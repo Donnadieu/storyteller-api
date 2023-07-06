@@ -76,6 +76,12 @@ GEM
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     erubi (1.12.0)
+    faraday (2.7.10)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-multipart (1.0.4)
+      multipart-post (~> 2)
+    faraday-net_http (3.0.2)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.14.1)
@@ -96,6 +102,7 @@ GEM
     mini_mime (1.1.2)
     minitest (5.18.1)
     msgpack (1.7.1)
+    multipart-post (2.3.0)
     net-imap (0.3.6)
       date
       net-protocol
@@ -112,6 +119,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.7)
+    rack-cors (2.0.1)
+      rack (>= 2.0.0)
     rack-test (2.1.0)
       rack (>= 1.3)
     rails (7.0.6)
@@ -145,6 +154,10 @@ GEM
     rake (13.0.6)
     reline (0.3.5)
       io-console (~> 0.5)
+    ruby-openai (4.2.0)
+      faraday (>= 1)
+      faraday-multipart (>= 1)
+    ruby2_keywords (0.0.5)
     sqlite3 (1.6.3-x86_64-linux)
     thor (1.2.2)
     timeout (0.4.0)
@@ -162,7 +175,9 @@ DEPENDENCIES
   bootsnap
   debug
   puma (~> 5.0)
+  rack-cors
   rails (~> 7.0.6)
+  ruby-openai
   sqlite3 (~> 1.4)
   tzinfo-data
 
