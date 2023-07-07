@@ -15,11 +15,14 @@ class Api::Oauth::GoogleController < ApplicationController
       @access_token = Doorkeeper::AccessToken.create!(
         application_id: @client.id,
         resource_owner_id: @user.id,
-        scopes: 'public'
+        scopes: 'public',
+        use_refresh_token: true
       )
 
       render json: {
+        user: JSON.parse(@user.to_json),
         access_token: @access_token.token,
+        refresh_token: @access_token.refresh_token,
         token_type: 'bearer',
         expires_in: @access_token.expires_in,
         refresh_token: @access_token.refresh_token,
