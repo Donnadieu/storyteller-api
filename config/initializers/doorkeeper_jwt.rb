@@ -8,11 +8,11 @@ Doorkeeper::JWT.configure do
     {
       iss: 'api/oauth',
       iat: Time.current.utc.to_i,
+      exp: 1.day.from_now.utc.to_i, # TODO: Make this configurable
       aud: opts[:application][:uid],
 
       # @see JWT reserved claims - https://tools.ietf.org/html/draft-jones-json-web-token-07#page-7
       jti: SecureRandom.uuid,
-      
       # Hash the id to avoid sending the user id in the clear
       sub: Digest::SHA256.hexdigest(user.id.to_s),
 
