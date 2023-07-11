@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :oauth do
       post "google", controller: :google, action: :create
+      get "google", controller: :google, action: :index
     end
   end
 end
