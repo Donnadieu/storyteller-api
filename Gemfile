@@ -7,7 +7,7 @@ ruby "3.2.2"
 gem "rails", "~> 7.0.6"
 
 # Use sqlite3 as the database for Active Record
-# gem "sqlite3", "~> 1.4"
+gem "sqlite3"
 gem 'pg'
 
 # Use the Puma web server [https://github.com/puma/puma]

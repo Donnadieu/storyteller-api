@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+# Create Doorkeeper Applications
+puts "Creating Doorkeeper Applications"
+if Doorkeeper::Application.count.zero?
+  Doorkeeper::Application.create(name: "StorySprout", scopes: 'read write')
+
+  puts "Doorkeeper Applications created"
+end
