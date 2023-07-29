@@ -10,7 +10,7 @@ class Api::Oauth::GoogleController < ApplicationController
 
   def create
     @user = User.find_or_create_from_auth_hash(@id_token)
-    
+
     if @user.persisted?
       @access_token = Doorkeeper::AccessToken.create!(
         application_id: @client.id,
