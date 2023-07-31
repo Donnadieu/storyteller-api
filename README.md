@@ -12,3 +12,17 @@ Follow these steps to setup `ngrok` for your local environment:
   ```shell
   ngrok config add-authtoken ${NGROK_AUTH_TOKEN}
   ```
+
+### Managing application secrets 
+
+To view help information about managing application credentials, run the following command in your console:
+
+```shell
+bin/rails credentials:help
+```
+
+To edit the credentials file for your development environment, run the following code in your console:
+
+```shell
+EDITOR=nano bin/rails credentials:edit --environment ${RAILS_ENV:-development}
+```

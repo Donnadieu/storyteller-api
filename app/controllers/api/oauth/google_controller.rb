@@ -34,7 +34,7 @@ class Api::Oauth::GoogleController < ApplicationController
 
   private
 
-  def auth_parmams
+  def auth_params
     params.permit(
       :credential,
       :client_id,
@@ -44,8 +44,8 @@ class Api::Oauth::GoogleController < ApplicationController
 
   def authorize_client
     app = Doorkeeper::Application.find_by(
-      uid: auth_parmams[:client_id],
-      secret: auth_parmams[:client_secret]
+      uid: auth_params[:client_id],
+      secret: auth_params[:client_secret]
     )
 
     if app.nil?
@@ -57,7 +57,7 @@ class Api::Oauth::GoogleController < ApplicationController
 
   def verify_id_token
     payload = Google::Auth::IDTokens.verify_oidc(
-      auth_parmams[:credential],
+      auth_params[:credential],
       aud: Rails.application.credentials.google.client_id
     )
 

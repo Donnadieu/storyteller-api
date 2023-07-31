@@ -1,2 +1,2 @@
 #!/usr/bin/env zsh
-ngrok http --domain=api.storysprout.ngrok.io 3000
+ngrok start --all --config=${NGROK_PROFILE_CONFIG_PATH},${PROJECT_ROOT}/config/ngrok.yml
