@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_24_125204) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_28_183444) do
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer "resource_owner_id", null: false
     t.integer "application_id", null: false
@@ -60,6 +60,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_125204) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_stories", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "story_id", null: false
+    t.datetime "purchased_at"
+    t.datetime "expires_at"
+    t.datetime "activated_at"
+    t.datetime "deactivated_at"
+    t.string "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["story_id"], name: "index_user_stories_on_story_id"
+    t.index ["user_id"], name: "index_user_stories_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "image"
@@ -74,4 +88,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_125204) do
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
+  add_foreign_key "user_stories", "stories"
+  add_foreign_key "user_stories", "users"
 end

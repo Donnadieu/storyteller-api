@@ -8,6 +8,9 @@ class User < ApplicationRecord
            class_name: 'Doorkeeper::AccessToken',
            foreign_key: :resource_owner_id,
            dependent: :delete_all # or :destroy if you need callbacks
+  
+  has_many :user_stories
+  has_many :stories, through: :user_stories
 
   validates :provider, presence: true
   validates :email, presence: true
