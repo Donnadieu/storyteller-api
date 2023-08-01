@@ -3,4 +3,5 @@ class Story < ApplicationRecord
   has_many :users, through: :user_stories
 
   validates :description, presence: true
+  validates :title, presence: true
 end
