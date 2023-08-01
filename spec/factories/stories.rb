@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :story do
-    description { "MyString" }
+    title { Faker::Lorem.sentence }
+    description { Faker::Lorem.paragraph }
   end
 end
