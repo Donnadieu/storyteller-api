@@ -9,6 +9,9 @@ class User < ApplicationRecord
            foreign_key: :resource_owner_id,
            dependent: :delete_all # or :destroy if you need callbacks
 
+  validates :provider, presence: true
+  validates :email, presence: true
+
   def self.find_or_create_from_auth_hash(auth_hash)
     provider = auth_hash['iss']
     name = auth_hash['name']
