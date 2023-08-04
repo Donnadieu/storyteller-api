@@ -10,5 +10,8 @@ Rails.application.routes.draw do
       post "google", controller: :google, action: :create
       get "google", controller: :google, action: :index
     end
+    namespace :v1 do
+      resources :stories, only: [:create, :update, :index, :show, :destroy]
+    end
   end
 end
