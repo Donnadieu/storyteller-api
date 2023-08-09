@@ -21,5 +21,13 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    constraints HasRestrictedAccessConstraint do
+      mount Flipper::Api.app(Flipper) => '/flipper' # Docs: https://www.flippercloud.io/docs/api
+    end
+  end
+
+  scope :admin, as: :admin, constraints: HasRestrictedAccessConstraint do
+    mount Flipper::UI.app(Flipper) => '/flipper' # Docs: https://www.flippercloud.io/docs/api
   end
 end
