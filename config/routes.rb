@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get "google", controller: :google, action: :index
       post "apple", controller: :apple, action: :create
       get "apple", controller: :apple, action: :index
+      get "apple/token", controller: :apple, action: :token
     end
 
     namespace :v1 do
