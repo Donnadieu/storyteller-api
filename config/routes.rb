@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     end
   end
 
+  # TODO: Get this working - the constraint for accessing /admin/flipper still doesn't work on local. we need this
+  #   to allow admins on specific networks access the flipper UI
   scope :admin, as: :admin, constraints: HasRestrictedAccessConstraint do
     mount Flipper::UI.app(Flipper) => '/flipper' # Docs: https://www.flippercloud.io/docs/api
   end

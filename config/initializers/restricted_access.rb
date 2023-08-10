@@ -1,8 +1,9 @@
 class HasRestrictedAccessConstraint
-  def self.matches?(request)
+  def self.matches?(_request)
     return true if Rails.env.development?
 
-    current_user = request.env['warden'].user
-    current_user.present? && current_user.respond_to?(:admin?) && current_user.admin?
+    # TODO: retrieve current_user from doorkeeper, perhaps using CurrentAttributes https://api.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html
+    # current_user.present? && current_user.respond_to?(:admin?) && current_user.admin?
+    false
   end
 end
