@@ -48,6 +48,8 @@ group :development, :test do
   gem "rspec-rails"
   gem "rubocop"
   gem "rubocop-performance"
+  gem 'shoulda-matchers'
+  gem "faker"
 end
 
 group :development do

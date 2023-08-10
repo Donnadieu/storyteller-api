@@ -30,11 +30,7 @@
 !/tmp/storage/.keep
 
 # Ignore master key for decrypting credentials and more.
-/config/credentials/master.key
-
-/config/credentials/development.key
-
-/config/credentials/production.key
+/config/credentials/*.key
 
 # Ignore some IDE files
 /.idea
