@@ -4,6 +4,9 @@ class ApplicationController < ActionController::API
               Errors::AccessTokenRequestFailed,
               with: :unauthorized
 
+  rescue_from Errors::UnprocessableEntity,
+              with: :unprocessable_entity
+
   def unauthorized
     render json: {
       status: "error"

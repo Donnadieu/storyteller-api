@@ -10,6 +10,10 @@ class Api::Oauth::GoogleController < ApplicationController
     Google::Auth::IDTokens::SignatureError,
   ].freeze
 
+  def index
+    head :not_implemented
+  end
+
   def create
     @user = User.find_or_create_from_auth_hash(@id_token)
     raise Errors::Unauthorized unless @user.persisted?
@@ -44,10 +48,9 @@ class Api::Oauth::GoogleController < ApplicationController
     if payload['aud'] == Rails.application.credentials.google.client_id
       @id_token = payload
     else
-      head :unauthorized
+      raise Errors::Unauthorized
     end
-
-    rescue *GOOGLE_AUTH_ERRORS => e
-      head :unauthorized
+  rescue *GOOGLE_AUTH_ERRORS => e
+    head :unauthorized
   end
 end

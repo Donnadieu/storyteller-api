@@ -8,16 +8,15 @@ class Api::Oauth::AppleController < ApplicationController
   before_action :authorize_client, only: %i[create]
 
   def index
-    head 501
+    head :not_implemented
   end
 
   def token
-    # TODO: implement access token workflow
-    head 501
+    head :not_implemented
   end
 
   def create
-    return unprocessable_entity unless params[:code].present? && params[:id_token].present?
+    raise Errors::UnprocessableEntity unless params[:code].present? && params[:id_token].present?
 
     begin
       verify_back_channel_id_token!
@@ -80,13 +79,6 @@ class Api::Oauth::AppleController < ApplicationController
 
     @id_token_front_channel = AppleID::IdToken.decode(params[:id_token])
     @id_token_front_channel.verify!(client: @provider_client, code: params[:code])
-  end
-
-  def created
-    render json: {
-      status: "success",
-      data: @user
-    }, status: 201
   end
 
   def setup_provider_client
