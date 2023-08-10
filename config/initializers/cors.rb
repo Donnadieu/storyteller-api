@@ -7,9 +7,14 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins [ "localhost:3006", "https://storyteller-ui.vercel.app" ]
+    origins %w[
+      localhost:3006
+      https://storyteller-ui.vercel.app
+      https://storysprout.ngrok.app
+      https://storysprout.app
+    ]
     resource "*",
-      headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+             headers: :any,
+             methods: [:get, :post, :put, :patch, :delete, :options, :head]
   end
 end
