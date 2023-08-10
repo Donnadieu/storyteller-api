@@ -56,6 +56,13 @@ Rails.application.configure do
   # Configure allowed hosts. See doc https://guides.rubyonrails.org/configuring.html#actiondispatch-hostauthorization
   config.hosts << "api.storysprout.ngrok.io"
 
+  # Flipper mount options
+  config.flipper.mount_options = {
+    rack_protection: {
+      except: %i[authenticity_token form_token json_csrf remote_token http_origin session_hijacking]
+    }
+  }
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
