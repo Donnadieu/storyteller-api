@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
+      # RAILS_MASTER_KEY: 'This needs to be securely set for GitHub Actions'
       PROJECT_ROOT: .
 
     steps:
@@ -26,7 +27,5 @@ jobs:
 
     - name: Build and run tests
       run: |
-        gem install bundler
-        bundle install --jobs 4 --retry 3
         bundle exec rake db:create db:migrate
         bundle exec rspec
