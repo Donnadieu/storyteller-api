@@ -11,4 +11,6 @@ Rails.application.routes.draw do
       get "google", controller: :google, action: :index
     end
   end
+
+  draw(:flipper)
 end
