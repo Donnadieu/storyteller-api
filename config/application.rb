@@ -17,7 +17,11 @@ module StorytellerApi
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
+    config.extra_load_paths = [
+      'lib/tasks'
+    ].map { |path| Rails.root.join(path).to_s }
+    config.autoload_paths += config.extra_load_paths
+    config.eager_load_paths += config.extra_load_paths
 
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
