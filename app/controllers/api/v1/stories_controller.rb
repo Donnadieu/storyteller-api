@@ -4,6 +4,8 @@ class Api::V1::StoriesController < ApplicationController
   
   # GET /stories
   def index
+    # Rerturn not implemented
+    head :not_implemented
     @stories = current_resource_owner.stories
 
     render json: @stories
@@ -11,6 +13,8 @@ class Api::V1::StoriesController < ApplicationController
 
   # POST /stories
   def create
+    # Rerturn not implemented
+    head :not_implemented
     @story = Story.new(story_params)
 
     if @story.save
@@ -22,6 +26,8 @@ class Api::V1::StoriesController < ApplicationController
 
   # PATCH/PUT /stories/1
   def update
+    # Rerturn not implemented
+    head :not_implemented
     if @story.update(story_params)
       render json: @story
     else
@@ -29,9 +35,14 @@ class Api::V1::StoriesController < ApplicationController
     end
   end
 
+  def destroy
+    # Rerturn not implemented
+    head :not_implemented
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_user_story
+    def set_story
       @story = current_resource_owner.stories.find(params[:id])
     end
 

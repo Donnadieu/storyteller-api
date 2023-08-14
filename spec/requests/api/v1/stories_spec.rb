@@ -58,6 +58,7 @@ RSpec.describe "api/v1/stories", type: :request do
     }
   end
 
+  # Note we will work on this later as part of https://larcity.atlassian.net/browse/STORYAI-10
   xdescribe "GET /index" do
     context 'when the user is authenticated' do
       it "renders a the user's stories" do
