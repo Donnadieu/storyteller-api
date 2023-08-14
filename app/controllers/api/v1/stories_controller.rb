@@ -4,18 +4,14 @@ class Api::V1::StoriesController < ApplicationController
   
   # GET /stories
   def index
-    # Rerturn not implemented
-    return head :not_implemented
     @stories = current_resource_owner.stories
 
     render json: @stories
   end
 
   # POST /stories
-  def create
-    # Rerturn not implemented
-    return head :not_implemented
-    @story = Story.new(story_params)
+  def create    
+    @story = Story.generate(story_params, current_resource_owner)
 
     if @story.save
       render json: @story, status: :created
@@ -26,13 +22,7 @@ class Api::V1::StoriesController < ApplicationController
 
   # PATCH/PUT /stories/1
   def update
-    # Rerturn not implemented
-    return head :not_implemented
-    if @story.update(story_params)
-      render json: @story
-    else
-      render json: @story.errors, status: :unprocessable_entity
-    end
+    head :not_implemented
   end
 
   def destroy
