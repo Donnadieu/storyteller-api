@@ -28,4 +28,8 @@ class User < ApplicationRecord
       user.provider = provider
     end
   end
+
+  def admin?
+    %w[uche.chilaka@gmail.com donnadieu.86@gmail.com].include? email
+  end
 end
