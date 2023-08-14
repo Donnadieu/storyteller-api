@@ -16,7 +16,7 @@ jobs:
     - name: Set up Ruby 3.2.2
       uses: ruby/setup-ruby@v1
       with:
-      ruby-version: 3.2.2
+        ruby-version: 3.2.2
 
     - name: Run bundle install
       working-directory: ${{env.PROJECT_ROOT}}
