@@ -57,6 +57,8 @@ group :development do
   # gem "spring"
 end
 
+gem "apple_id", "~> 1.6"
+
 gem "flipper", "~> 0.28.3"
 gem "flipper-active_record", "~> 0.28.3"
 gem "flipper-api", "~> 0.28.3"

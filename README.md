@@ -1,24 +1,28 @@
-# README
+# StorySprout API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> The rails auto-generated README has been moved [here](md/RAILS.md) 
 
-Things you may want to cover:
+## Development
 
-* Ruby version
+### Using NGROK
 
-* System dependencies
+Follow these steps to setup `ngrok` for your local environment:
+- Ensure you have updated your `.envrc` file with the `NGROK_AUTH_TOKEN`. You can get this from KeePass
+- Run the following script to export the token to your local `ngrok.yml` config file:
+  ```shell
+  ngrok config add-authtoken ${NGROK_AUTH_TOKEN}
+  ```
 
-* Configuration
+### Managing application secrets 
 
-* Database creation
+To view help information about managing application credentials, run the following command in your console:
 
-* Database initialization
+```shell
+bin/rails credentials:help
+```
 
-* How to run the test suite
+To edit the credentials file for your development environment, run the following code in your console:
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```shell
+EDITOR=nano bin/rails credentials:edit --environment ${RAILS_ENV:-development}
+```
