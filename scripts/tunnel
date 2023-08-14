@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+export PROJECT_ROOT=$(realpath "${0:a:h}/../")
+
+ngrok start --all --config=${NGROK_PROFILE_CONFIG_PATH},${PROJECT_ROOT}/config/ngrok.yml
