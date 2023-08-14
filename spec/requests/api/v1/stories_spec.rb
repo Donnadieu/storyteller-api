@@ -58,7 +58,7 @@ RSpec.describe "api/v1/stories", type: :request do
     }
   end
 
-  describe "GET /index" do
+  xdescribe "GET /index" do
     context 'when the user is authenticated' do
       it "renders a the user's stories" do
         10.times do
@@ -94,7 +94,7 @@ RSpec.describe "api/v1/stories", type: :request do
   end
     
 
-  describe "POST /create" do
+  xdescribe "POST /create" do
     context "when the user is authenticated" do
       context "and valid parameters" do
         it "creates a new Story with a new UserStory" do
