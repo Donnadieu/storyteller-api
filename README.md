@@ -4,6 +4,11 @@
 
 ## Development
 
+### Post-install TODOs 
+
+- Doorkeeper
+  - [ ] Review the [post-install message from 08/15](md/post_install_todos/DOORKEEPER.md)
+
 ### Using NGROK
 
 Follow these steps to setup `ngrok` for your local environment:
