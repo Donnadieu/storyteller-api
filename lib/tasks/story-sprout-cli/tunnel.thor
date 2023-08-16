@@ -54,14 +54,11 @@ module StorySproutCLI
         BANNER
       end
 
-      cmd = "ngrok start --all --config=#{ENV.fetch('NGROK_PROFILE_CONFIG_PATH')},#{project_root}/config/ngrok.yml"
-
-      # cmd = "ngrok start --all --config=#{ENV.fetch('NGROK_PROFILE_CONFIG_PATH')},#{project_root}/config/ngrok.yml " +
-      #   "--log=stdout > #{project_root}/log/ngrok.log &"
+      cmd = "ngrok start --all --config=#{ENV.fetch('NGROK_PROFILE_CONFIG_PATH')},#{project_root}/config/ngrok.yml "
 
       if verbose?
         puts <<~CMD
-          Will execute: #{cmd}
+          Executing#{dry_run? ? ' (dry-run)' : ''}: #{cmd}
         CMD
       end
 
