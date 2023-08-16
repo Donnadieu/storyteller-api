@@ -49,6 +49,11 @@ module StorySproutCLI
       end
 
       # TODO: Check for ngrok config file(s) and exit if they don't exist
+      config_files = []
+      app_config_file = File.join(project_root, 'config', 'ngrok.yml')
+      profile_config_file = ENV.fetch('NGROK_PROFILE_CONFIG_PATH', nil)
+      config_files << profile_config_file if File.exist?(profile_config_file)
+      config_files << app_config_file if File.exist?(app_config_file)
 
       if verbose?
         puts <<~BANNER
@@ -56,7 +61,14 @@ module StorySproutCLI
         BANNER
       end
 
-      cmd = "ngrok start --all --config=#{ENV.fetch('NGROK_PROFILE_CONFIG_PATH')},#{project_root}/config/ngrok.yml "
+      if config_files.empty?
+        puts <<~ERROR
+          No ngrok config files found. Please create one at #{app_config_file} or #{profile_config_file}.
+        ERROR
+        exit 1
+      end
+
+      cmd = "ngrok start --all --config=#{config_files.join(',')} "
 
       if verbose?
         puts <<~CMD
