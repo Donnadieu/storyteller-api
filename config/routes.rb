@@ -21,6 +21,9 @@ Rails.application.routes.draw do
         end
       end
     end
+    namespace :v1 do
+      resources :stories, only: [:create, :update, :index, :show, :destroy]
+    end
   end
 
   draw(:flipper)

@@ -69,6 +69,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_183329) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
+  create_table "stories", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_stories", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "story_id", null: false
+    t.datetime "purchased_at"
+    t.datetime "expires_at"
+    t.datetime "activated_at"
+    t.datetime "deactivated_at"
+    t.string "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["story_id"], name: "index_user_stories_on_story_id"
+    t.index ["user_id"], name: "index_user_stories_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "image"
@@ -83,4 +104,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_183329) do
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
+  add_foreign_key "user_stories", "stories"
+  add_foreign_key "user_stories", "users"
 end
