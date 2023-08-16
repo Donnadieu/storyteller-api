@@ -48,6 +48,8 @@ module StorySproutCLI
         CMD
       end
 
+      # TODO: Check for ngrok config files and exit if they don't exist
+
       if verbose?
         puts <<~BANNER
           Starting ngrok tunnels for #{project_root}...
