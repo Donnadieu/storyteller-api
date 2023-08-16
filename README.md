@@ -4,6 +4,19 @@
 
 ## Development
 
+### Setup 
+
+To setup your local environment, run the following commands in your console:
+
+```shell
+# List dependencies that are installed
+brew bundle list 
+# Check if dependencies are satisfied. If your installed versions are behind, this will "fail" the check 
+brew bundle check 
+# Install dependencies that are not installed
+brew bundle
+```
+
 ### Using NGROK
 
 Follow these steps to setup `ngrok` for your local environment:
