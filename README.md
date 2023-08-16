@@ -1,13 +1,8 @@
 # StorySprout API
 
-> The rails auto-generated README has been moved [here](md/RAILS.md) 
+> The rails auto-generated README has been moved [here](docs/RAILS.md) 
 
 ## Development
-
-### Post-install TODOs 
-
-- Doorkeeper
-  - [ ] Review the [post-install message from 08/15](md/post_install_todos/DOORKEEPER.md)
 
 ### Using NGROK
 
