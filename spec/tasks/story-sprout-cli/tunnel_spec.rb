@@ -18,7 +18,7 @@ module StorySproutCLI
       it 'successfully opens the tunnel' do
         expect {
           subject.invoke(:open_all, [], verbose: true, dry_run: true)
-        }.to output(/Opening ngrok tunnels for/).to_stdout
+        }.to output(/\(dry-run\): ngrok start --all/).to_stdout
       end
     end
 
