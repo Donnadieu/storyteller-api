@@ -15,8 +15,11 @@ RSpec.describe UserStory, type: :model do
     it 'validates uniqueness of :user_id scoped to :story_id' do
       # Create a valid user_story record with a user and story
       user = FactoryBot.create(:user)
+      # User should be valid without any associated stories
+      expect(user).to be_valid
+
       story = FactoryBot.create(:story)
-      user_story = FactoryBot.create(:user_story, user: user, story: story)
+      _user_story = FactoryBot.create(:user_story, user: user, story: story)
 
       # Build a new user_story with the same user and story
       new_user_story = FactoryBot.build(:user_story, user: user, story: story)
