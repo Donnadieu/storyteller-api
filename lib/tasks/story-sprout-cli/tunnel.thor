@@ -48,7 +48,7 @@ module StorySproutCLI
         CMD
       end
 
-      # TODO: Check for ngrok config files and exit if they don't exist
+      # TODO: Check for ngrok config file(s) and exit if they don't exist
 
       if verbose?
         puts <<~BANNER
