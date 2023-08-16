@@ -20,6 +20,14 @@ module StorySproutCLI
           subject.invoke(:open_all, [], verbose: true, dry_run: true)
         }.to output(/\(dry-run\): ngrok start --all/).to_stdout
       end
+
+      it 'fails and exits if the NGROK_AUTH_TOKEN is not set' do
+        with_modified_env(NGROK_AUTH_TOKEN: nil) do
+          expect {
+            subject.invoke(:open_all, [], verbose: true, dry_run: true)
+          }.to output(/No ngrok auth token found/).to_stdout
+        end
+      end
     end
 
     describe '#has_realpath_cmd?' do

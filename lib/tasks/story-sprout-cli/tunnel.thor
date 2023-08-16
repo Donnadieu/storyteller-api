@@ -23,29 +23,14 @@ module StorySproutCLI
 
     desc 'open_all', 'Open ngrok tunnels for the project'
     def open_all
-      project_rel_path = File.expand_path('../../../../', __FILE__)
-      if has_realpath_cmd?
-        project_root = `realpath "#{project_rel_path}"`
-      elsif has_python_3?
-        project_root = `python3 -c "import os; print(os.path.realpath('#{project_rel_path}'))"`
-      else
-        puts 'realpath could not be found. Tunnel will not be opened.'
+      if auth_token_nil?
+        puts <<~ERROR
+          No ngrok auth token found. Please set NGROK_AUTH_TOKEN in your environment. 
+          You will need an ngrok account to use this CLI command. 
+          See https://dashboard.ngrok.com/get-started/your-authtoken for more information.
+        ERROR
+
         exit 1
-      end
-
-      if project_root.empty?
-        puts 'realpath could not be found. Tunnel will not be opened.'
-        exit 1
-      end
-
-      project_root.strip!
-
-      if verbose?
-        puts <<~CMD
-          ===========================================================================
-             Project root: #{project_root}
-          ===========================================================================
-        CMD
       end
 
       # TODO: Check for ngrok config file(s) and exit if they don't exist
@@ -80,6 +65,41 @@ module StorySproutCLI
     end
 
     private
+
+    def auth_token_nil?
+      ENV.fetch('NGROK_AUTH_TOKEN', nil).nil?
+    end
+
+    def project_root
+      return @project_root if @project_root
+
+      project_rel_path = File.expand_path('../../../../', __FILE__)
+      if has_realpath_cmd?
+        project_root = `realpath "#{project_rel_path}"`
+      elsif has_python_3?
+        project_root = `python3 -c "import os; print(os.path.realpath('#{project_rel_path}'))"`
+      else
+        puts 'realpath could not be found. Tunnel will not be opened.'
+        exit 1
+      end
+
+      if project_root.empty?
+        puts 'realpath could not be found. Tunnel will not be opened.'
+        exit 1
+      end
+
+      @project_root = project_root.strip!
+
+      if verbose?
+        puts <<~CMD
+          ===========================================================================
+             Project root: #{project_root}
+          ===========================================================================
+        CMD
+      end
+
+      @project_root
+    end
 
     def verbose?
       options[:verbose]
