@@ -7,6 +7,10 @@ class ApplicationController < ActionController::API
   rescue_from Errors::UnprocessableEntity,
               with: :unprocessable_entity
 
+  def current_resource_owner
+    User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+  end
+
   def unauthorized
     render json: {
       status: "error"
