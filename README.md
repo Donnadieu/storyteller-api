@@ -12,6 +12,10 @@ Follow these steps to setup `ngrok` for your local environment:
   ```shell
   ngrok config add-authtoken ${NGROK_AUTH_TOKEN}
   ```
+Then you can open a tunnel to your local environment by running:
+```shell
+thor story-sprout-cli:tunnel:open_all
+```
 
 ### Managing application secrets 
 
