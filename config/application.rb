@@ -27,6 +27,12 @@ module StorytellerApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    # Configure admin emails
+    config.admin_emails = config_for(:admins)[:emails]
+
+    # Configure admin remote IP addresses
+    config.admin_remote_ips = config_for(:admins)[:ip_addresses]
+
     # Configure allowed hosts. See doc https://guides.rubyonrails.org/configuring.html#actiondispatch-hostauthorization
     config.hosts += config_for(:allowed_hosts)
 

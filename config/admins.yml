@@ -1,0 +1,20 @@
+default: &default
+  emails:
+    - uche.chilaka@gmail.com
+    - donnadieu.86@gmail.com
+  ip_addresses:
+    - 23.244.86.78 # Uche's home remote IP
+
+development:
+  <<: *default
+  ip_addresses:
+    - 127.0.0.1
+    - 23.244.86.78 # Uche's home remote IP
+
+test:
+  <<: *default
+  ip_addresses:
+    - 127.0.0.1
+
+production:
+  <<: *default
