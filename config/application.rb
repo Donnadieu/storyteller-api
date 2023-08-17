@@ -27,6 +27,9 @@ module StorytellerApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    # Configure allowed hosts. See doc https://guides.rubyonrails.org/configuring.html#actiondispatch-hostauthorization
+    config.hosts += config_for(:allowed_hosts)
+
     config.generators do |g|
       g.test_framework :rspec
     end

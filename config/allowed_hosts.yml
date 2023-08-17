@@ -1,0 +1,6 @@
+development:
+  - api.storysprout.ngrok.io
+test:
+  - api.storysprout.test
+production:
+  - api.storysprout.app

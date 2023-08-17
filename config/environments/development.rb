@@ -53,9 +53,6 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
-  # # Configure allowed hosts. See doc https://guides.rubyonrails.org/configuring.html#actiondispatch-hostauthorization
-  # config.hosts << "storysprout.ngrok.io"
-
   # Flipper mount options
   config.flipper.mount_options = {
     rack_protection: {
