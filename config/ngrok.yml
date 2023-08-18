@@ -1,0 +1,12 @@
+# For a complete example, review https://ngrok.com/docs/secure-tunnels/ngrok-agent/reference/config/#full-example
+region: us
+version: 2
+tunnels:
+  storysprout-api:
+    proto: http
+    addr: 3000
+    domain: api.storysprout.ngrok.io
+  storysprout-ui:
+    proto: http
+    addr: 3006
+    domain: storysprout.ngrok.app
