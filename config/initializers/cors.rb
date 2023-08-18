@@ -7,6 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
+    # Regex test: https://regex101.com/r/oqv0X5/1
     origins 'localhost:3006',
             'https://storyteller-ui.vercel.app',
             'https://storysprout.ngrok.app',
