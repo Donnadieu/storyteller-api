@@ -9,7 +9,12 @@
 # Create Doorkeeper Applications
 puts "Creating Doorkeeper Applications"
 if Doorkeeper::Application.count.zero?
-  Doorkeeper::Application.create(name: "StorySprout", scopes: 'read write')
+  client_credentials = Rails.application.credentials.storysprout
+  preset_credentials = client_credentials.present? ? {
+    uid: client_credentials.client_id,
+    secret: client_credentials.client_secret
+  } : {}
+  Doorkeeper::Application.create(name: "StorySprout", scopes: 'read write', **preset_credentials)
 
   puts "Doorkeeper Applications created"
 end
