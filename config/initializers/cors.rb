@@ -11,6 +11,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
       localhost:3006
       https://storyteller-ui.vercel.app
       https://storysprout.ngrok.app
+      https://www.storysprout.app
       https://storysprout.app
     ]
     resource "*",
