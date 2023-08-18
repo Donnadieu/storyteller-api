@@ -1,3 +1,4 @@
+# 20230730183329_create_flipper_tables.rb
 class CreateFlipperTables < ActiveRecord::Migration[7.0]
   def self.up
     create_table :flipper_features do |t|
