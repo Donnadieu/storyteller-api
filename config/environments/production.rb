@@ -81,6 +81,13 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  # Flipper mount options
+  config.flipper.mount_options = {
+    rack_protection: {
+      except: %i[authenticity_token form_token json_csrf remote_token http_origin session_hijacking]
+    }
+  }
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
