@@ -1,5 +1,14 @@
 # Doc on advanced constraints https://guides.rubyonrails.org/routing.html#advanced-constraints
-flipper_constraint = lambda { |request| request.remote_ip == '127.0.0.1' }
+flipper_constraint = lambda { |request|
+  case request.path
+  when /\/api\/flipper\/actors\/Users;\d+/
+    return request.method.downcase == 'get'
+  when /\/api\/flipper\/features/
+    return request.method.downcase == 'get'
+  else
+    Rails.application.config.admin_remote_ips.include? request.remote_ip
+  end
+}
 
 namespace :api do
   constraints flipper_constraint do
