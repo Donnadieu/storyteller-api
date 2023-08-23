@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
-      # RAILS_MASTER_KEY: 'This needs to be securely set for GitHub Actions'
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
       PROJECT_ROOT: .
 
     steps:
