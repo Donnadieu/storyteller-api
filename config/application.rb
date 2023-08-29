@@ -17,7 +17,11 @@ module StorytellerApi
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
+    config.extra_load_paths = [
+      'lib/tasks'
+    ].map { |path| Rails.root.join(path).to_s }
+    config.autoload_paths += config.extra_load_paths
+    config.eager_load_paths += config.extra_load_paths
 
     # Flipper mount options
     config.flipper.mount_options = {}

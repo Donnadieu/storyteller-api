@@ -50,6 +50,7 @@ group :development, :test do
   gem "rubocop"
   gem "rubocop-performance"
   gem 'shoulda-matchers'
+  gem "climate_control"
 end
 
 group :development do
