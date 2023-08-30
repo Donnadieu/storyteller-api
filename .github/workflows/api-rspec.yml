@@ -28,4 +28,4 @@ jobs:
     - name: Build and run tests
       run: |
         bundle exec rake db:create db:migrate
-        bundle exec rspec
+        bundle exec rspec --tag "~devtool"

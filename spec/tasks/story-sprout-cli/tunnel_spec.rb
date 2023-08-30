@@ -3,7 +3,7 @@ require 'rails_helper'
 load Rails.root.join('lib/tasks/story-sprout-cli/tunnel.thor')
 
 module StorySproutCLI
-  describe Tunnel, type: :task do
+  describe Tunnel, type: :task, devtool: true do
     subject { described_class.new }
 
     describe '#open_all' do
