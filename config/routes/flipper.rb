@@ -6,7 +6,7 @@ flipper_constraint = lambda { |request|
   when /\/api\/flipper\/features/
     return request.method.downcase == 'get'
   else
-    Rails.application.config.admin_remote_ips.include? request.remote_ip
+    (Rails.application.config.admin_remote_ips & request.forwarded_for).any?
   end
 }
 
