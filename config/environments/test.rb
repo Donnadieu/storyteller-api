@@ -52,6 +52,9 @@ Rails.application.configure do
   # Tell Active Support which deprecation messages to disallow.
   config.active_support.disallowed_deprecation_warnings = []
 
+  # Flipper mount options
+  config.flipper.mount_options = {}
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
