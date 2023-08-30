@@ -1,11 +1,11 @@
 # Some notes on getting started https://dev.to/sulmanweb/github-actions-run-rspec-test-on-every-push-for-free-1pb6#settings-through-the-yaml-file
-name: CI RSpec Tests
+name: API specs
 
 on: [pull_request]
 
 jobs:
   build:
-    name: CI
+    name: CI test suite
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
@@ -28,4 +28,5 @@ jobs:
     - name: Build and run tests
       run: |
         bundle exec rake db:create db:migrate
-        bundle exec rspec
+        # Run all specs except those with the option devtool: true
+        bundle exec rspec --tag "~devtool"
