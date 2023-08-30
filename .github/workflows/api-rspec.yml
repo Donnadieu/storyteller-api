@@ -28,4 +28,5 @@ jobs:
     - name: Build and run tests
       run: |
         bundle exec rake db:create db:migrate
+        # Run all specs except those with the option devtool: true
         bundle exec rspec --tag "~devtool"
