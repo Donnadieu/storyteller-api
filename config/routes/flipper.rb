@@ -1,11 +1,14 @@
 # Doc on advanced constraints https://guides.rubyonrails.org/routing.html#advanced-constraints
 flipper_constraint = lambda { |request|
   case request.path
-  when /\/api\/flipper\/actors\/Users;\d+/
-    return request.method.downcase == 'get'
-  when /\/api\/flipper\/features/
-    return request.method.downcase == 'get'
+  when /\/admin\/flipper\/(css|js)\//
+    return true
+  when /\/api\/flipper\/features/, /\/api\/flipper\/actors\/Users;\d+/
+    return request.method == 'GET'
   else
+    if request.forwarded_for.nil?
+      return Rails.application.config.admin_remote_ips.include?(request.remote_ip)
+    end
     # Checks to see if any of the remote ips captured for the request are in the admin_remote_ips array
     (Rails.application.config.admin_remote_ips & request.forwarded_for).any?
   end
