@@ -51,7 +51,7 @@ module StorySproutCLI
           No ngrok config files found. Please create one at #{app_config_file} or #{profile_config_file}.
         ERROR
 
-        return
+        exit 1
       end
 
       cmd = "ngrok start --all --config=#{config_files.join(',')} "
@@ -81,12 +81,12 @@ module StorySproutCLI
         project_root = `python3 -c "import os; print(os.path.realpath('#{project_rel_path}'))"`
       else
         puts 'realpath could not be found. Tunnel will not be opened.'
-        return
+        exit 1
       end
 
       if project_root.empty?
         puts 'realpath could not be found. Tunnel will not be opened.'
-        return
+        exit 1
       end
 
       @project_root = project_root.strip!
