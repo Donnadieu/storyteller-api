@@ -30,7 +30,7 @@ module StorySproutCLI
           See https://dashboard.ngrok.com/get-started/your-authtoken for more information.
         ERROR
 
-        exit 1
+        return
       end
 
       # TODO: Check for ngrok config file(s) and exit if they don't exist
@@ -50,6 +50,7 @@ module StorySproutCLI
         puts <<~ERROR
           No ngrok config files found. Please create one at #{app_config_file} or #{profile_config_file}.
         ERROR
+
         exit 1
       end
 
