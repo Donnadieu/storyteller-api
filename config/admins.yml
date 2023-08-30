@@ -4,12 +4,14 @@ default: &default
     - donnadieu.86@gmail.com
   ip_addresses:
     - 23.244.86.78 # Uche's home remote IP
+    - 131.106.80.4 # Omar's home remote IP
 
 development:
   <<: *default
   ip_addresses:
     - 127.0.0.1
     - 23.244.86.78 # Uche's home remote IP
+    - 131.106.80.4 # Omar's home remote IP
 
 test:
   <<: *default
