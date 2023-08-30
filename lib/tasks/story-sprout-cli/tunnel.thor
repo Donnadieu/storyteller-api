@@ -30,7 +30,7 @@ module StorySproutCLI
           See https://dashboard.ngrok.com/get-started/your-authtoken for more information.
         ERROR
 
-        exit 1
+        return
       end
 
       # TODO: Check for ngrok config file(s) and exit if they don't exist
@@ -50,7 +50,8 @@ module StorySproutCLI
         puts <<~ERROR
           No ngrok config files found. Please create one at #{app_config_file} or #{profile_config_file}.
         ERROR
-        exit 1
+
+        return
       end
 
       cmd = "ngrok start --all --config=#{config_files.join(',')} "
@@ -80,12 +81,12 @@ module StorySproutCLI
         project_root = `python3 -c "import os; print(os.path.realpath('#{project_rel_path}'))"`
       else
         puts 'realpath could not be found. Tunnel will not be opened.'
-        exit 1
+        return
       end
 
       if project_root.empty?
         puts 'realpath could not be found. Tunnel will not be opened.'
-        exit 1
+        return
       end
 
       @project_root = project_root.strip!
