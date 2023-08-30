@@ -1,4 +1,6 @@
 # Some notes on getting started https://dev.to/sulmanweb/github-actions-run-rspec-test-on-every-push-for-free-1pb6#settings-through-the-yaml-file
+name: API specs
+
 on: [pull_request]
 
 jobs:
