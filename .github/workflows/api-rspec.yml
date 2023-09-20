@@ -1,0 +1,32 @@
+# Some notes on getting started https://dev.to/sulmanweb/github-actions-run-rspec-test-on-every-push-for-free-1pb6#settings-through-the-yaml-file
+name: API specs
+
+on: [pull_request]
+
+jobs:
+  build:
+    name: CI test suite
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+      PROJECT_ROOT: .
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby 3.2.2
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.2.2
+
+    - name: Run bundle install
+      working-directory: ${{env.PROJECT_ROOT}}
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3        
+
+    - name: Build and run tests
+      run: |
+        bundle exec rake db:create db:migrate
+        # Run all specs except those with the option devtool: true
+        bundle exec rspec --tag "~devtool"

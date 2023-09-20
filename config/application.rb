@@ -17,7 +17,11 @@ module StorytellerApi
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
+    config.extra_load_paths = [
+      'lib/tasks'
+    ].map { |path| Rails.root.join(path).to_s }
+    config.autoload_paths += config.extra_load_paths
+    config.eager_load_paths += config.extra_load_paths
 
     # Flipper mount options
     config.flipper.mount_options = {}
@@ -26,6 +30,15 @@ module StorytellerApi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # Configure admin emails
+    config.admin_emails = config_for(:admins)[:emails]
+
+    # Configure admin remote IP addresses
+    config.admin_remote_ips = config_for(:admins)[:ip_addresses]
+
+    # Configure allowed hosts. See doc https://guides.rubyonrails.org/configuring.html#actiondispatch-hostauthorization
+    config.hosts += config_for(:allowed_hosts)
 
     config.generators do |g|
       g.test_framework :rspec
