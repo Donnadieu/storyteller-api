@@ -160,5 +160,12 @@ RSpec.describe "api/v1/stories", type: :request do
         expect(response).to have_http_status(:not_implemented)
       end
     end
+
+    context "when the user is not authenticated" do
+      it "returns not implemented" do
+        patch api_v1_story_url(1), headers: valid_headers, as: :json
+        expect(response).to have_http_status(:not_implemented)
+      end
+    end
   end
 end
