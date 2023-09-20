@@ -58,7 +58,6 @@ RSpec.describe "api/v1/stories", type: :request do
     }
   end
 
-  # Note we will work on this later as part of https://larcity.atlassian.net/browse/STORYAI-10
   describe "GET /index" do
     context 'when the user is authenticated' do
       it "renders a the user's stories" do
@@ -105,7 +104,7 @@ RSpec.describe "api/v1/stories", type: :request do
                params: valid_attributes,
                headers: valid_headers,
                as: :json
-  
+
           expect(response).to have_http_status(:created)
           expect(response.content_type).to match(a_string_including("application/json"))
           expect(Story.count).to eq(1)
@@ -131,6 +130,7 @@ RSpec.describe "api/v1/stories", type: :request do
         it "renders a JSON response with errors for the new user_story" do
           post api_v1_stories_url,
                params: invalid_attributes, headers: valid_headers, as: :json
+
           expect(response).to have_http_status(:unprocessable_entity)
           expect(response.content_type).to match(a_string_including("application/json"))
         end

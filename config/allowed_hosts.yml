@@ -2,6 +2,7 @@ development:
   - api.storysprout.ngrok.io
 test:
   - api.storysprout.test
+  - www.example.com
 production:
   - api.storysprout.app
   - storyteller-f0pp.onrender.com
