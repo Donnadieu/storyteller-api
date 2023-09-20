@@ -171,6 +171,8 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
+    nokogiri (1.15.3-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.15.3-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.15.3-x86_64-linux)
@@ -303,6 +305,7 @@ GEM
       faraday (>= 0.17.5, < 3.a)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
+    sqlite3 (1.6.3-arm64-darwin)
     sqlite3 (1.6.3-x86_64-darwin)
     sqlite3 (1.6.3-x86_64-linux)
     swd (2.0.2)
@@ -331,6 +334,7 @@ GEM
     zeitwerk (2.6.8)
 
 PLATFORMS
+  arm64-darwin-22
   x86_64-darwin-22
   x86_64-linux
 
