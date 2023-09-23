@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Be sure to restart your server when you modify this file.
 
 # Avoid CORS issues when API is called from the frontend app.
@@ -12,9 +14,9 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
             '127.0.0.1:3006',
             'https://storyteller-ui.vercel.app',
             'https://storysprout.ngrok.app',
-            /\Ahttps?:\/\/(?:[a-zA-Z0-9-]+\.)?storysprout\.app\z/
-    resource "*",
+            %r{\Ahttps?://(?:[a-zA-Z0-9-]+\.)?storysprout\.app\z}
+    resource '*',
              headers: :any,
-             methods: [:get, :post, :put, :patch, :delete, :options, :head]
+             methods: %i[get post put patch delete options head]
   end
 end

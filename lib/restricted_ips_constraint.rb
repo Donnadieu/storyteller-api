@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RestrictedIpsConstraint
   def initialize
     @ips = Rails.application.config.admin_remote_ips

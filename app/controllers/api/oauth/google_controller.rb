@@ -1,56 +1,60 @@
-class Api::Oauth::GoogleController < ApplicationController
-  include Authorizable
+# frozen_string_literal: true
 
-  before_action :authorize_client, only: [:create]
-  before_action :verify_id_token, only: [:create]
+module Api
+  module Oauth
+    class GoogleController < ApplicationController
+      include Authorizable
 
-  GOOGLE_AUTH_ERRORS = [
-    Google::Auth::IDTokens::AudienceMismatchError,
-    Google::Auth::IDTokens::ExpiredTokenError,
-    Google::Auth::IDTokens::SignatureError,
-  ].freeze
+      before_action :authorize_client, only: [:create]
+      before_action :verify_id_token, only: [:create]
 
-  def index
-    head :not_implemented
-  end
+      GOOGLE_AUTH_ERRORS = [
+        Google::Auth::IDTokens::AudienceMismatchError,
+        Google::Auth::IDTokens::ExpiredTokenError,
+        Google::Auth::IDTokens::SignatureError
+      ].freeze
 
-  def create
-    @user = User.find_or_create_from_auth_hash(@id_token)
-    raise Errors::Unauthorized unless @user.persisted?
+      def index
+        head :not_implemented
+      end
 
-    initialize_access_token!
+      def create
+        @user = User.find_or_create_from_auth_hash(@id_token)
+        raise Errors::Unauthorized unless @user.persisted?
 
-    render json: {
-      user: JSON.parse(@user.to_json),
-      access_token: @access_token.token,
-      refresh_token: @access_token.refresh_token,
-      token_type: 'bearer',
-      created_at: @access_token.created_at.to_i
-    }, status: :created
-  end
+        initialize_access_token!
 
-  private
+        render json: {
+          user: JSON.parse(@user.to_json),
+          access_token: @access_token.token,
+          refresh_token: @access_token.refresh_token,
+          token_type: 'bearer',
+          created_at: @access_token.created_at.to_i
+        }, status: :created
+      end
 
-  def auth_params
-    params.permit(
-      :credential,
-      :client_id,
-      :client_secret
-    )
-  end
+      private
 
-  def verify_id_token
-    payload = Google::Auth::IDTokens.verify_oidc(
-      auth_params[:credential],
-      aud: Rails.application.credentials.google.client_id
-    )
+      def auth_params
+        params.permit(
+          :credential,
+          :client_id,
+          :client_secret
+        )
+      end
 
-    if payload['aud'] == Rails.application.credentials.google.client_id
-      @id_token = payload
-    else
-      raise Errors::Unauthorized
+      def verify_id_token
+        payload = Google::Auth::IDTokens.verify_oidc(
+          auth_params[:credential],
+          aud: Rails.application.credentials.google.client_id
+        )
+
+        raise Errors::Unauthorized unless payload['aud'] == Rails.application.credentials.google.client_id
+
+        @id_token = payload
+      rescue *GOOGLE_AUTH_ERRORS
+        head :unauthorized
+      end
     end
-  rescue *GOOGLE_AUTH_ERRORS => e
-    head :unauthorized
   end
 end
