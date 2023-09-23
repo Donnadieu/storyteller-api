@@ -68,10 +68,18 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.4)
       public_suffix (>= 2.0.2, < 6.0)
+    aes_key_wrap (1.1.0)
+    apple_id (1.6.3)
+      json-jwt (~> 1.16)
+      openid_connect (~> 2.0)
+      rack-oauth2 (~> 2.0)
     ast (2.4.2)
+    attr_required (1.0.1)
+    bindata (2.4.15)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    climate_control (1.2.0)
     coderay (1.1.3)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
@@ -95,9 +103,25 @@ GEM
     faraday (2.7.10)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
+    faraday-follow_redirects (0.3.0)
+      faraday (>= 1, < 3)
     faraday-multipart (1.0.4)
       multipart-post (~> 2)
     faraday-net_http (3.0.2)
+    flipper (0.28.3)
+      concurrent-ruby (< 2)
+    flipper-active_record (0.28.3)
+      activerecord (>= 4.2, < 8)
+      flipper (~> 0.28.3)
+    flipper-api (0.28.3)
+      flipper (~> 0.28.3)
+      rack (>= 1.4, < 3)
+    flipper-ui (0.28.3)
+      erubi (>= 1.0.0, < 2.0.0)
+      flipper (~> 0.28.3)
+      rack (>= 1.4, < 3)
+      rack-protection (>= 1.5.3, <= 4.0.0)
+      sanitize (< 7)
     globalid (1.1.0)
       activesupport (>= 5.0)
     googleauth (1.6.0)
@@ -113,6 +137,12 @@ GEM
     irb (1.7.1)
       reline (>= 0.3.0)
     json (2.6.3)
+    json-jwt (1.16.3)
+      activesupport (>= 4.2)
+      aes_key_wrap
+      bindata
+      faraday (~> 2.0)
+      faraday-follow_redirects
     jwt (2.7.1)
     language_server-protocol (3.17.0.3)
     loofah (2.21.3)
@@ -141,10 +171,25 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
+    nokogiri (1.15.3-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.15.3-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.15.3-x86_64-linux)
       racc (~> 1.4)
+    openid_connect (2.2.0)
+      activemodel
+      attr_required (>= 1.0.0)
+      faraday (~> 2.0)
+      faraday-follow_redirects
+      json-jwt (>= 1.16)
+      net-smtp
+      rack-oauth2 (~> 2.2)
+      swd (~> 2.0)
+      tzinfo
+      validate_email
+      validate_url
+      webfinger (~> 2.0)
     os (1.1.4)
     parallel (1.23.0)
     parser (3.2.2.3)
@@ -163,6 +208,15 @@ GEM
     rack (2.2.7)
     rack-cors (2.0.1)
       rack (>= 2.0.0)
+    rack-oauth2 (2.2.0)
+      activesupport
+      attr_required
+      faraday (~> 2.0)
+      faraday-follow_redirects
+      json-jwt (>= 1.11.0)
+      rack (>= 2.1.0)
+    rack-protection (3.0.6)
+      rack
     rack-test (2.1.0)
       rack (>= 1.3)
     rails (7.0.6)
@@ -241,6 +295,9 @@ GEM
       faraday-multipart (>= 1)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    sanitize (6.0.2)
+      crass (~> 1.0.2)
+      nokogiri (>= 1.12.0)
     shoulda-matchers (5.3.0)
       activesupport (>= 5.2.0)
     signet (0.17.0)
@@ -248,29 +305,52 @@ GEM
       faraday (>= 0.17.5, < 3.a)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
+    sqlite3 (1.6.3-arm64-darwin)
     sqlite3 (1.6.3-x86_64-darwin)
     sqlite3 (1.6.3-x86_64-linux)
+    swd (2.0.2)
+      activesupport (>= 3)
+      attr_required (>= 0.0.5)
+      faraday (~> 2.0)
+      faraday-follow_redirects
     thor (1.2.2)
     timeout (0.4.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
+    validate_email (0.1.6)
+      activemodel (>= 3.0)
+      mail (>= 2.2.5)
+    validate_url (1.0.15)
+      activemodel (>= 3.0.0)
+      public_suffix
+    webfinger (2.1.2)
+      activesupport
+      faraday (~> 2.0)
+      faraday-follow_redirects
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     zeitwerk (2.6.8)
 
 PLATFORMS
+  arm64-darwin-22
   x86_64-darwin-22
   x86_64-linux
 
 DEPENDENCIES
+  apple_id (~> 1.6)
   bootsnap
+  climate_control
   debug
   doorkeeper (~> 5.6)
   doorkeeper-jwt
   factory_bot_rails
   faker
+  flipper (~> 0.28.3)
+  flipper-active_record (~> 0.28.3)
+  flipper-api (~> 0.28.3)
+  flipper-ui (~> 0.28.3)
   googleauth
   pg
   pry-rails

@@ -9,6 +9,9 @@ class User < ApplicationRecord
            foreign_key: :resource_owner_id,
            dependent: :delete_all # or :destroy if you need callbacks
 
+  has_many :user_stories
+  has_many :stories, through: :user_stories
+
   validates :provider, presence: true
   validates :email, presence: true
 
@@ -24,5 +27,9 @@ class User < ApplicationRecord
       user.email = email
       user.provider = provider
     end
+  end
+
+  def admin?
+    Rails.application.config.admin_emails.include? email
   end
 end
