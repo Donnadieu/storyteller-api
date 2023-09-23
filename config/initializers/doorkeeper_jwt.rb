@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Doorkeeper::JWT.configure do
   # Set the payload for the JWT token. This should contain unique information
   # about the user. Defaults to a randomly generated token in a hash:

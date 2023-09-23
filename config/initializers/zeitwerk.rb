@@ -1,3 +1,5 @@
-Rails.autoloaders.main.inflector.inflect("vat" => "VAT")
-Rails.autoloaders.main.inflector.inflect("cli" => "CLI")
-Rails.autoloaders.main.inflector.inflect("story-sprout-cli" => "StorySproutCLI")
+# frozen_string_literal: true
+
+Rails.autoloaders.main.inflector.inflect('vat' => 'VAT')
+Rails.autoloaders.main.inflector.inflect('cli' => 'CLI')
+Rails.autoloaders.main.inflector.inflect('story-sprout-cli' => 'StorySproutCLI')

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateUserStories < ActiveRecord::Migration[7.0]
   def change
     create_table :user_stories do |t|
@@ -7,7 +9,7 @@ class CreateUserStories < ActiveRecord::Migration[7.0]
       t.datetime :expires_at
       t.datetime :activated_at
       t.datetime :deactivated_at
-      t.string :notes      
+      t.string :notes
 
       t.timestamps
     end
