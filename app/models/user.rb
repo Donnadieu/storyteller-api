@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_many :access_grants,
            class_name: 'Doorkeeper::AccessGrant',
@@ -21,7 +23,7 @@ class User < ApplicationRecord
     image = auth_hash['picture']
     email = auth_hash['email']
 
-    User.find_or_create_by(provider: provider, email: email) do |user|
+    User.find_or_create_by(provider:, email:) do |user|
       user.name = name
       user.image = image
       user.email = email

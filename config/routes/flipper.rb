@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../lib/flipper_resources_constraint'
 
 namespace :api do

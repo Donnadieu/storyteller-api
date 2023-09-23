@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe UserStory, type: :model do
@@ -19,15 +21,14 @@ RSpec.describe UserStory, type: :model do
       expect(user).to be_valid
 
       story = FactoryBot.create(:story)
-      _user_story = FactoryBot.create(:user_story, user: user, story: story)
+      _user_story = FactoryBot.create(:user_story, user:, story:)
 
       # Build a new user_story with the same user and story
-      new_user_story = FactoryBot.build(:user_story, user: user, story: story)
+      new_user_story = FactoryBot.build(:user_story, user:, story:)
 
       # Ensure that the new user_story is not valid due to uniqueness validation
       expect(new_user_story).not_to be_valid
       expect(new_user_story.errors[:user_id]).to include('has already been taken')
     end
-
   end
 end

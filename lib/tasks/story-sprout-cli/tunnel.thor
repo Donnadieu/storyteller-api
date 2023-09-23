@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'thor'
 
 module StorySproutCLI
@@ -10,7 +12,7 @@ module StorySproutCLI
                  required: false
     class_option :dry_run,
                  type: :boolean,
-                  aliases: '-d',
+                 aliases: '-d',
                  desc: 'Dry run',
                  default: false,
                  required: false
@@ -25,8 +27,8 @@ module StorySproutCLI
     def open_all
       if auth_token_nil?
         puts <<~ERROR
-          No ngrok auth token found. Please set NGROK_AUTH_TOKEN in your environment. 
-          You will need an ngrok account to use this CLI command. 
+          No ngrok auth token found. Please set NGROK_AUTH_TOKEN in your environment.#{' '}
+          You will need an ngrok account to use this CLI command.#{' '}
           See https://dashboard.ngrok.com/get-started/your-authtoken for more information.
         ERROR
 
@@ -62,7 +64,7 @@ module StorySproutCLI
         CMD
       end
 
-      system(cmd, out: STDOUT) unless dry_run?
+      system(cmd, out: $stdout) unless dry_run?
     end
 
     private
@@ -74,7 +76,7 @@ module StorySproutCLI
     def project_root
       return @project_root if @project_root
 
-      project_rel_path = File.expand_path('../../../../', __FILE__)
+      project_rel_path = File.expand_path('../../..', __dir__)
       if has_realpath_cmd?
         project_root = `realpath "#{project_rel_path}"`
       elsif has_python_3?
