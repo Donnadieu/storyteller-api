@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       resources :stories, only: %i[create update index show destroy]
 
       get :health, controller: :health, action: :index
+      get :heartbeat, controller: :health, action: :heartbeat
     end
   end
 
