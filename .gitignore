@@ -31,6 +31,8 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/credentials/*.key
+/config/credentials/*.service-account.json
+/config/credentials/*.iam.gserviceaccount.com.json
 
 # Ignore some IDE files
 /.idea
