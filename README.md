@@ -8,6 +8,7 @@
     * [Using NGROK](#using-ngrok)
   * [Operations](#operations)
     * [Using logs](#using-logs)
+  * [Future reading](#future-reading)
 <!-- TOC -->
 
 > The rails auto-generated README has been moved [here](docs/RAILS.md)
