@@ -29,11 +29,25 @@ brew bundle
 
 ### Managing application secrets
 
+To edit credentials in your IDE, run the following command in your console:
+
+```shell
+thor story-cli:secrets:edit
+```
+
 To view help information about managing application credentials, run the following command in your console:
 
 ```shell
 bin/rails credentials:help
 ```
+
+To edit the credentials file for your development environment using the rails credentials scripts 
+and your command line, run the following code in your console:
+
+```shell
+EDITOR=nano bin/rails credentials:edit --environment ${RAILS_ENV:-development}
+```
+
 
 ### Using NGROK
 
@@ -48,12 +62,6 @@ Follow these steps to setup `ngrok` for your local environment:
 Then you can open a tunnel to your local environment by running:
 ```shell
 thor story-cli:tunnel:open_all
-```
-
-To edit the credentials file for your development environment, run the following code in your console:
-
-```shell
-EDITOR=nano bin/rails credentials:edit --environment ${RAILS_ENV:-development}
 ```
 
 ## Operations
