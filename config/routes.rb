@@ -16,15 +16,17 @@ Rails.application.routes.draw do
       get 'apple/token', controller: :apple, action: :token
     end
 
-    namespace :v1 do
+    namespace :v1, format: :json do
       namespace :webhooks do
         namespace :apple do
           resources :notifications, only: %i[create]
         end
       end
-    end
-    namespace :v1 do
+
       resources :stories, only: %i[create update index show destroy]
+
+      get :health, controller: :health, action: :index
+      get :heartbeat, controller: :health, action: :heartbeat
     end
   end
 
