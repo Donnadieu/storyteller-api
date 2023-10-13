@@ -66,6 +66,3 @@ gem 'flipper', '~> 0.28.3'
 gem 'flipper-active_record', '~> 0.28.3'
 gem 'flipper-api', '~> 0.28.3'
 gem 'flipper-ui', '~> 0.28.3'
-
-gem 'stackdriver', '~> 0.21'
-

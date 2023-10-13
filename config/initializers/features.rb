@@ -8,8 +8,5 @@ Flipper.configure do |config|
     Flipper.new(adapter)
   end
 
-  if FeatureFlagUtils.initialized?
-    FeatureFlagUtils.setup_defaults
-    FeatureFlagUtils.log_status
-  end
+  FeatureFlagUtils.setup_defaults if FeatureFlagUtils.initialized?
 end

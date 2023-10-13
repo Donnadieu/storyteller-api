@@ -3,7 +3,6 @@
 require_relative 'boot'
 
 require 'rails/all'
-require_relative '../lib/stackdriver_utils'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -25,9 +24,6 @@ module StorytellerApi
     ].map { |path| Rails.root.join(path).to_s }
     config.autoload_paths += config.extra_load_paths
     config.eager_load_paths += config.extra_load_paths
-
-    # Setup cloud logging
-    StackdriverUtils.setup
 
     # Flipper mount options
     config.flipper.mount_options = {}

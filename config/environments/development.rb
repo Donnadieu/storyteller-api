@@ -2,7 +2,7 @@
 
 require 'active_support/core_ext/integer/time'
 
-Rails.application.configure do |app|
+Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
@@ -18,13 +18,6 @@ Rails.application.configure do |app|
 
   # Enable server timing
   config.server_timing = true
-
-  # Stackdriver Google Cloud Logging: https://github.com/googleapis/google-cloud-ruby/blob/main/stackdriver/INSTRUMENTATION_CONFIGURATION.md
-  config.google_cloud.project_id = app.credentials.google_cloud.project_id
-  config.google_cloud.logging.log_name = "storysprout-api-#{Rails.env}"
-  config.google_cloud.trace.capture_stack = true
-  config.log_level = :debug
-  config.google_cloud.use_logging = StackdriverUtils.enabled?
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
