@@ -66,3 +66,6 @@ gem 'flipper', '~> 0.28.3'
 gem 'flipper-active_record', '~> 0.28.3'
 gem 'flipper-api', '~> 0.28.3'
 gem 'flipper-ui', '~> 0.28.3'
+
+# Brevo (FKA SendinBlue) API V3 Ruby Gem. Docs: https://github.com/sendinblue/APIv3-ruby-library
+gem 'sib-api-v3-sdk'
