@@ -14,7 +14,7 @@ jobs:
       # TODO: Enabling the line below will output test logs to the cloud.
       #   We need to test that doing this within a PR will stream that PR's
       #   log output in the test environment to the cloud logger
-      STACKDRIVER_ENABLED: true
+      STACKDRIVER_ENABLED: false
 
     steps:
     - uses: actions/checkout@v2
