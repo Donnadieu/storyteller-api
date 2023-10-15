@@ -19,10 +19,19 @@ module StackdriverUtils
 
       # Set stackdriver keyfile
       app.config.google_cloud.keyfile = private_key_file
+
+      # Other configuration options
+      app.config.google_cloud.project_id = config.project_id
+      app.config.google_cloud.use_logging = enabled?
+      app.config.google_cloud.use_trace = enabled?
+      app.config.google_cloud.use_error_reporting = enabled?
+      app.config.google_cloud.logging.log_name = "storysprout-api-#{Rails.env}"
+      app.config.google_cloud.trace.capture_stack = true
     end
 
     def enabled?
-      %w[1 yes true].include? ENV.fetch('STACKDRIVER_ENABLED', true).to_s
+      @enabled ||= %w[1 yes true].include?(ENV.fetch('STACKDRIVER_ENABLED', true).to_s) ||
+                   Rails.env.production?
     end
 
     private
