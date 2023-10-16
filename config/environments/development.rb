@@ -22,11 +22,6 @@ Rails.application.configure do |_app|
   # Stackdriver Google Cloud Logging: https://github.com/googleapis/google-cloud-ruby/blob/main/stackdriver/INSTRUMENTATION_CONFIGURATION.md
   config.log_level = :debug
 
-  # Configure rails_semantic_logger appender https://logger.rocketjob.io/appenders.html
-  SemanticLogger.add_appender(file_name: "#{Rails.env}.log")
-  # # Log to local syslog daemon
-  # SemanticLogger.add_appender(appender: :syslog)
-
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp/caching-dev.txt').exist?
