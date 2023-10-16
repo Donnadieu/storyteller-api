@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-load Rails.root.join('lib/tasks/story-sprout-cli/tunnel.thor')
+load Rails.root.join('lib/tasks/story-cli/tunnel.thor')
 
-module StorySproutCLI
+module StoryCLI
   describe Tunnel, type: :task, devtool: true do
     subject { described_class.new }
 

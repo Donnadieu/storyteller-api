@@ -2,7 +2,8 @@
 
 require 'thor'
 
-module StorySproutCLI
+module StoryCLI
+  # Manage NGROK tunnels for dev testing of the app and rails API
   class Tunnel < Thor
     class_option :verbose,
                  type: :boolean,
@@ -17,7 +18,7 @@ module StorySproutCLI
                  default: false,
                  required: false
 
-    namespace :'story-sprout-cli:tunnel'
+    namespace :'story-cli:tunnel'
 
     def self.exit_on_failure?
       true
