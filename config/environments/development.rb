@@ -20,12 +20,12 @@ Rails.application.configure do |_app|
   config.server_timing = true
 
   # Stackdriver Google Cloud Logging: https://github.com/googleapis/google-cloud-ruby/blob/main/stackdriver/INSTRUMENTATION_CONFIGURATION.md
-  # config.google_cloud.project_id = app.credentials.google_cloud.project_id
-  # config.google_cloud.use_logging = StackdriverUtils.enabled?
-  # config.google_cloud.use_trace = StackdriverUtils.enabled?
-  # config.google_cloud.use_error_reporting = StackdriverUtils.enabled?
-  # config.google_cloud.logging.log_name = "storysprout-api-#{Rails.env}"
   config.log_level = :debug
+
+  # Configure rails_semantic_logger appender https://logger.rocketjob.io/appenders.html
+  SemanticLogger.add_appender(file_name: "#{Rails.env}.log")
+  # # Log to local syslog daemon
+  # SemanticLogger.add_appender(appender: :syslog)
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
