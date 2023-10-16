@@ -77,7 +77,11 @@ Rails.application.configure do
   # require "syslog/logger"
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
-  SemanticLogger.add_appender(io: $stdout, level: config.log_level) if ENV['RAILS_LOG_TO_STDOUT'].present?
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
+    $stdout.sync = true
+    config.rails_semantic_logger.add_file_appender = false
+    config.semantic_logger.add_appender(io: $stdout, formatter: config.rails_semantic_logger.format)
+  end
 
   # Flipper mount options
   config.flipper.mount_options = {

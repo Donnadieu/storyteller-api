@@ -1,0 +1,39 @@
+2023-10-16 06:53:48.469595 [32mD[0m [10373:4940] [32mActiveRecord::Base[0m --   [1m[36mFlipper::Adapters::ActiveRecord::Feature Load (0.2ms)[0m  [1m[34mSELECT "flipper_features".* FROM "flipper_features"[0m
+2023-10-16 06:53:48.470269 [32mD[0m [10373:4940] [32mActiveRecord::Base[0m --   ↳ lib/feature_flag_utils.rb:16:in `block in setup_defaults'
+2023-10-16 06:53:48.477924 [32mD[0m [10373:4940] [32mActiveRecord::Base[0m --   [1m[36mFlipper::Adapters::ActiveRecord::Feature Load (0.0ms)[0m  [1m[34mSELECT "flipper_features".* FROM "flipper_features"[0m
+2023-10-16 06:53:48.478444 [32mD[0m [10373:4940] [32mActiveRecord::Base[0m --   ↳ lib/feature_flag_utils.rb:21:in `log_status'
+2023-10-16 06:53:48.480954 [32mD[0m [10373:4940] [32mActiveRecord::Base[0m --   [1m[36mFlipper::Adapters::ActiveRecord::Gate Pluck (0.2ms)[0m  [1m[34mSELECT "flipper_gates"."key", "flipper_gates"."value" FROM "flipper_gates" WHERE "flipper_gates"."feature_key" = ?[0m  [["feature_key", "feat__apple_login"]]
+2023-10-16 06:53:48.481431 [32mD[0m [10373:4940] [32mActiveRecord::Base[0m --   ↳ lib/feature_flag_utils.rb:22:in `block in log_status'
+2023-10-16 06:53:48.481592 [36mI[0m [10373:4940] [36mRails[0m -- 📦Feature [feat__apple_login] is enabled
+2023-10-16 06:53:48.481949 [32mD[0m [10373:4940] [32mActiveRecord::Base[0m --   [1m[36mFlipper::Adapters::ActiveRecord::Gate Pluck (0.0ms)[0m  [1m[34mSELECT "flipper_gates"."key", "flipper_gates"."value" FROM "flipper_gates" WHERE "flipper_gates"."feature_key" = ?[0m  [["feature_key", "feat__about_page"]]
+2023-10-16 06:53:48.482422 [32mD[0m [10373:4940] [32mActiveRecord::Base[0m --   ↳ lib/feature_flag_utils.rb:22:in `block in log_status'
+2023-10-16 06:53:48.482487 [36mI[0m [10373:4940] [36mRails[0m -- 📦Feature [feat__about_page] is disabled
+2023-10-16 06:53:48.482820 [32mD[0m [10373:4940] [32mActiveRecord::Base[0m --   [1m[36mFlipper::Adapters::ActiveRecord::Gate Pluck (0.0ms)[0m  [1m[34mSELECT "flipper_gates"."key", "flipper_gates"."value" FROM "flipper_gates" WHERE "flipper_gates"."feature_key" = ?[0m  [["feature_key", "feat__profile"]]
+2023-10-16 06:53:48.483298 [32mD[0m [10373:4940] [32mActiveRecord::Base[0m --   ↳ lib/feature_flag_utils.rb:22:in `block in log_status'
+2023-10-16 06:53:48.483355 [36mI[0m [10373:4940] [36mRails[0m -- 📦Feature [feat__profile] is disabled
+2023-10-16 07:05:54.035891 [32mD[0m [14107:4940] [32mActiveRecord::Base[0m --   [1m[36mFlipper::Adapters::ActiveRecord::Feature Load (0.3ms)[0m  [1m[34mSELECT "flipper_features".* FROM "flipper_features"[0m
+2023-10-16 07:05:54.036565 [32mD[0m [14107:4940] [32mActiveRecord::Base[0m --   ↳ lib/feature_flag_utils.rb:16:in `block in setup_defaults'
+2023-10-16 07:05:54.046060 [32mD[0m [14107:4940] [32mActiveRecord::Base[0m --   [1m[36mFlipper::Adapters::ActiveRecord::Feature Load (0.1ms)[0m  [1m[34mSELECT "flipper_features".* FROM "flipper_features"[0m
+2023-10-16 07:05:54.046575 [32mD[0m [14107:4940] [32mActiveRecord::Base[0m --   ↳ lib/feature_flag_utils.rb:21:in `log_status'
+2023-10-16 07:05:54.049003 [32mD[0m [14107:4940] [32mActiveRecord::Base[0m --   [1m[36mFlipper::Adapters::ActiveRecord::Gate Pluck (0.2ms)[0m  [1m[34mSELECT "flipper_gates"."key", "flipper_gates"."value" FROM "flipper_gates" WHERE "flipper_gates"."feature_key" = ?[0m  [["feature_key", "feat__apple_login"]]
+2023-10-16 07:05:54.049484 [32mD[0m [14107:4940] [32mActiveRecord::Base[0m --   ↳ lib/feature_flag_utils.rb:22:in `block in log_status'
+2023-10-16 07:05:54.049614 [36mI[0m [14107:4940] [36mRails[0m -- 📦Feature [feat__apple_login] is enabled
+2023-10-16 07:05:54.050698 [32mD[0m [14107:4940] [32mActiveRecord::Base[0m --   [1m[36mFlipper::Adapters::ActiveRecord::Gate Pluck (0.0ms)[0m  [1m[34mSELECT "flipper_gates"."key", "flipper_gates"."value" FROM "flipper_gates" WHERE "flipper_gates"."feature_key" = ?[0m  [["feature_key", "feat__about_page"]]
+2023-10-16 07:05:54.051169 [32mD[0m [14107:4940] [32mActiveRecord::Base[0m --   ↳ lib/feature_flag_utils.rb:22:in `block in log_status'
+2023-10-16 07:05:54.051241 [36mI[0m [14107:4940] [36mRails[0m -- 📦Feature [feat__about_page] is disabled
+2023-10-16 07:05:54.051577 [32mD[0m [14107:4940] [32mActiveRecord::Base[0m --   [1m[36mFlipper::Adapters::ActiveRecord::Gate Pluck (0.0ms)[0m  [1m[34mSELECT "flipper_gates"."key", "flipper_gates"."value" FROM "flipper_gates" WHERE "flipper_gates"."feature_key" = ?[0m  [["feature_key", "feat__profile"]]
+2023-10-16 07:05:54.052045 [32mD[0m [14107:4940] [32mActiveRecord::Base[0m --   ↳ lib/feature_flag_utils.rb:22:in `block in log_status'
+2023-10-16 07:05:54.052100 [36mI[0m [14107:4940] [36mRails[0m -- 📦Feature [feat__profile] is disabled
+2023-10-16 07:10:01.337448 [32mD[0m [14769:4940] [32mActiveRecord::Base[0m --   [1m[36mFlipper::Adapters::ActiveRecord::Feature Load (0.3ms)[0m  [1m[34mSELECT "flipper_features".* FROM "flipper_features"[0m
+2023-10-16 07:10:01.338109 [32mD[0m [14769:4940] [32mActiveRecord::Base[0m --   ↳ lib/feature_flag_utils.rb:16:in `block in setup_defaults'
+2023-10-16 07:10:01.345707 [32mD[0m [14769:4940] [32mActiveRecord::Base[0m --   [1m[36mFlipper::Adapters::ActiveRecord::Feature Load (0.1ms)[0m  [1m[34mSELECT "flipper_features".* FROM "flipper_features"[0m
+2023-10-16 07:10:01.346218 [32mD[0m [14769:4940] [32mActiveRecord::Base[0m --   ↳ lib/feature_flag_utils.rb:21:in `log_status'
+2023-10-16 07:10:01.348911 [32mD[0m [14769:4940] [32mActiveRecord::Base[0m --   [1m[36mFlipper::Adapters::ActiveRecord::Gate Pluck (0.2ms)[0m  [1m[34mSELECT "flipper_gates"."key", "flipper_gates"."value" FROM "flipper_gates" WHERE "flipper_gates"."feature_key" = ?[0m  [["feature_key", "feat__apple_login"]]
+2023-10-16 07:10:01.349399 [32mD[0m [14769:4940] [32mActiveRecord::Base[0m --   ↳ lib/feature_flag_utils.rb:22:in `block in log_status'
+2023-10-16 07:10:01.349534 [36mI[0m [14769:4940] [36mRails[0m -- 📦Feature [feat__apple_login] is enabled
+2023-10-16 07:10:01.349889 [32mD[0m [14769:4940] [32mActiveRecord::Base[0m --   [1m[36mFlipper::Adapters::ActiveRecord::Gate Pluck (0.0ms)[0m  [1m[34mSELECT "flipper_gates"."key", "flipper_gates"."value" FROM "flipper_gates" WHERE "flipper_gates"."feature_key" = ?[0m  [["feature_key", "feat__about_page"]]
+2023-10-16 07:10:01.350381 [32mD[0m [14769:4940] [32mActiveRecord::Base[0m --   ↳ lib/feature_flag_utils.rb:22:in `block in log_status'
+2023-10-16 07:10:01.350450 [36mI[0m [14769:4940] [36mRails[0m -- 📦Feature [feat__about_page] is disabled
+2023-10-16 07:10:01.350786 [32mD[0m [14769:4940] [32mActiveRecord::Base[0m --   [1m[36mFlipper::Adapters::ActiveRecord::Gate Pluck (0.0ms)[0m  [1m[34mSELECT "flipper_gates"."key", "flipper_gates"."value" FROM "flipper_gates" WHERE "flipper_gates"."feature_key" = ?[0m  [["feature_key", "feat__profile"]]
+2023-10-16 07:10:01.351261 [32mD[0m [14769:4940] [32mActiveRecord::Base[0m --   ↳ lib/feature_flag_utils.rb:22:in `block in log_status'
+2023-10-16 07:10:01.351316 [36mI[0m [14769:4940] [36mRails[0m -- 📦Feature [feat__profile] is disabled

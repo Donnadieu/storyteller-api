@@ -29,6 +29,8 @@ module StorytellerApi
     # Setup cloud logging
     StackdriverUtils.setup
 
+    config.log_tags = { request_id: :request_id, ip: :remote_ip }
+
     # Flipper mount options
     config.flipper.mount_options = {}
 
