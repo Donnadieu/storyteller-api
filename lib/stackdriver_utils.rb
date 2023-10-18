@@ -5,7 +5,6 @@ require 'fileutils'
 # Helper methods for configuring Stackdriver: https://github.com/googleapis/google-cloud-ruby/blob/main/stackdriver/INSTRUMENTATION_CONFIGURATION.md
 module StackdriverUtils
   class << self
-    # Documentation for stackdriver setup: https://cloud.google.com/logging/docs/setup/ruby#run-local
     def setup
       return if config.private_key.nil?
       return if config.private_key.credential.nil?
@@ -17,23 +16,27 @@ module StackdriverUtils
         end
       end
 
-      # Set stackdriver keyfile
+      # Stackdriver shared configurations
+      app.config.google_cloud.project_id = config.project_id
       app.config.google_cloud.keyfile = private_key_file
 
-      # Other configuration options
-      app.config.google_cloud.project_id = config.project_id
-      app.config.google_cloud.use_logging = enabled?
-      app.config.google_cloud.use_trace = enabled?
-      app.config.google_cloud.use_error_reporting = enabled?
+      # Logging configurations
       app.config.google_cloud.logging.log_name = "storysprout-api-#{Rails.env}"
+      app.config.google_cloud.logging.log_name_map = {
+        '/api/v1/health' => 'ruby_health_check_log'
+      }
+      app.config.google_cloud.use_logging = enabled?
+
+      # Error reporting configurations
+      app.config.google_cloud.use_error_reporting = enabled?
+
+      # Trace configurations
       app.config.google_cloud.trace.capture_stack = true
+      app.config.google_cloud.use_trace = enabled?
     end
 
     def enabled?
-      @enabled ||= begin
-        %w[1 yes true].include?(ENV.fetch('STACKDRIVER_ENABLED', true).to_s) ||
-          Rails.env.production?
-      end
+      @enabled ||= %w[1 yes true].include?(ENV.fetch('STACKDRIVER_ENABLED', false).to_s)
     end
 
     private
