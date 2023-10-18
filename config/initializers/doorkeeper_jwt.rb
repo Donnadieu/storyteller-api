@@ -27,6 +27,7 @@ Doorkeeper::JWT.configure do
       }
     }
   end
+  # rubocop:disable Layout/LineLength
 
   # Optionally set additional headers for the JWT. See
   # https://tools.ietf.org/html/rfc7515#section-4.1
@@ -53,4 +54,6 @@ Doorkeeper::JWT.configure do
   # Specify encryption type (https://github.com/progrium/ruby-jwt). Defaults to
   # `nil`.
   encryption_method :hs256
+
+  # rubocop:enable Layout/LineLength
 end

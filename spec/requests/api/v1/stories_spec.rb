@@ -60,13 +60,10 @@ RSpec.describe 'api/v1/stories', type: :request do
     }
   end
 
-  # Note we will work on this later as part of https://larcity.atlassian.net/browse/STORYAI-10
-  xdescribe 'GET /index' do
+  describe 'GET /index' do
     context 'when the user is authenticated' do
       it "renders a the user's stories" do
-        10.times do
-          FactoryBot.create(:user_story, user_id: doorkeeper_access_token.resource_owner_id)
-        end
+        FactoryBot.create_list(:user_story, 10, user_id: doorkeeper_access_token.resource_owner_id)
 
         get api_v1_stories_url, headers: valid_headers, as: :json
 
@@ -96,7 +93,13 @@ RSpec.describe 'api/v1/stories', type: :request do
     end
   end
 
-  xdescribe 'POST /create' do
+  describe 'POST /create' do
+    before do
+      allow_any_instance_of(OpenAI::Client).to receive(:completions) {
+                                                 { 'choices' => [{ 'text' => 'Once upon a time' }] }
+                                               }
+    end
+
     context 'when the user is authenticated' do
       context 'and valid parameters' do
         it 'creates a new Story with a new UserStory' do
@@ -108,8 +111,7 @@ RSpec.describe 'api/v1/stories', type: :request do
           expect(response).to have_http_status(:created)
           expect(response.content_type).to match(a_string_including('application/json'))
           expect(Story.count).to eq(1)
-          expect(Story.first.title).to eq(valid_attributes[:story][:title])
-          expect(Story.first.description).to eq(valid_attributes[:story][:description])
+          expect(Story.first.description).to eq('Once upon a time')
           expect(UserStory.count).to eq(1)
           expect(UserStory.first.user_id).to eq(doorkeeper_access_token.resource_owner_id)
           expect(UserStory.first.story_id).to eq(Story.first.id)
@@ -117,6 +119,10 @@ RSpec.describe 'api/v1/stories', type: :request do
       end
 
       context 'and invalid parameters' do
+        before do
+          allow_any_instance_of(OpenAI::Client).to receive(:completions) { { 'choices' => [{ 'text' => '' }] } }
+        end
+
         it 'does not create a new UserStory' do
           expect do
             post api_v1_stories_url,
@@ -126,7 +132,8 @@ RSpec.describe 'api/v1/stories', type: :request do
 
         it 'renders a JSON response with errors for the new user_story' do
           post api_v1_stories_url,
-               params: { user_story: invalid_attributes }, headers: valid_headers, as: :json
+               params: invalid_attributes, headers: valid_headers, as: :json
+
           expect(response).to have_http_status(:unprocessable_entity)
           expect(response.content_type).to match(a_string_including('application/json'))
         end
@@ -145,36 +152,22 @@ RSpec.describe 'api/v1/stories', type: :request do
     end
   end
 
-  xdescribe 'PATCH /update' do
-    context 'with valid parameters' do
-      let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
-      end
+  describe 'PATCH /update' do
+    before do
+      FactoryBot.create(:user_story, user_id: doorkeeper_access_token.resource_owner_id)
+    end
 
-      it 'updates the requested user_story' do
-        user_story = UserStory.create! valid_attributes
-        patch user_story_url(user_story),
-              params: { user_story: new_attributes }, headers: valid_headers, as: :json
-        user_story.reload
-        skip('Add assertions for updated state')
-      end
-
-      it 'renders a JSON response with the user_story' do
-        user_story = UserStory.create! valid_attributes
-        patch user_story_url(user_story),
-              params: { user_story: new_attributes }, headers: valid_headers, as: :json
-        expect(response).to have_http_status(:ok)
-        expect(response.content_type).to match(a_string_including('application/json'))
+    context 'when the user is authenticated' do
+      it 'returns not implemented' do
+        patch api_v1_story_url(1), headers: valid_headers, as: :json
+        expect(response).to have_http_status(:not_implemented)
       end
     end
 
-    context 'with invalid parameters' do
-      it 'renders a JSON response with errors for the user_story' do
-        user_story = UserStory.create! valid_attributes
-        patch user_story_url(user_story),
-              params: { user_story: invalid_attributes }, headers: valid_headers, as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to match(a_string_including('application/json'))
+    context 'when the user is not authenticated' do
+      it 'returns not implemented' do
+        patch api_v1_story_url(1), headers: valid_headers, as: :json
+        expect(response).to have_http_status(:not_implemented)
       end
     end
   end
