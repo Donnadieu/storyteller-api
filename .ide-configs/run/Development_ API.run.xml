@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="API (development)" type="RailsRunConfigurationType" factoryName="Rails">
-    <module name="api" />
+  <configuration default="false" name="Development: API" type="RailsRunConfigurationType" factoryName="Rails">
+    <module name="storyteller-api" />
     <predefined_log_file enabled="true" id="RUBY_RAILS_SERVER" />
     <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
     <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
@@ -12,6 +12,10 @@
       <COVERAGE_PATTERN ENABLED="true">
         <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
       </COVERAGE_PATTERN>
+    </EXTENSION>
+    <EXTENSION ID="com.fapiko.jetbrains.plugins.better_direnv.runconfigs.RubyMineRunConfigurationExtension">
+      <option name="DIRENV_ENABLED" value="true" />
+      <option name="DIRENV_TRUSTED" value="true" />
     </EXTENSION>
     <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
     <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SCRIPT_ARGS" VALUE="" />
