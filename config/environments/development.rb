@@ -2,7 +2,7 @@
 
 require 'active_support/core_ext/integer/time'
 
-Rails.application.configure do |_app|
+Rails.application.configure do |app|
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
@@ -20,7 +20,16 @@ Rails.application.configure do |_app|
   config.server_timing = true
 
   # Doc for Stackdriver on local: https://cloud.google.com/logging/docs/setup/ruby#run-local
-  StackdriverUtils.setup
+  StackdriverUtils.setup if StackdriverUtils.enabled?
+
+  # config.logger = Logtail::Logger.create_default_logger("zBwtbf9gGqdCUVKrxtPo7mhi")
+  # SemanticLogger.add_appender(
+  #   appender: :http, url: 'https://in.logs.betterstack.com'
+  # )
+  # TODO: See SemanticLogger::Subscriber to create a subscriber for Logtail
+  # SemanticLogger.add_appender(
+  #   appender: Logtail::Logger.create_logger(app.credentials.logtail.source_token)
+  # )
 
   config.log_level = :debug
 
