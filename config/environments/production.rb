@@ -77,19 +77,19 @@ Rails.application.configure do
   # require "syslog/logger"
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
-  # Stackdriver Google Cloud Logging: https://github.com/googleapis/google-cloud-ruby/blob/main/stackdriver/INSTRUMENTATION_CONFIGURATION.md
-  config.google_cloud.use_logging = StackdriverUtils.enabled? # Enabled by default in production
-  # config.google_cloud.use_error_reporting = StackdriverUtils.enabled?
-  # config.google_cloud.use_trace = StackdriverUtils.enabled?
-
   if ENV['RAILS_LOG_TO_STDOUT'].present?
-    logger           = ActiveSupport::Logger.new($stdout)
-    logger.formatter = config.log_formatter
-    config.logger    = ActiveSupport::TaggedLogging.new(logger)
+    # # If using rails_semantic_logger
     # $stdout.sync = true
     # config.rails_semantic_logger.add_file_appender = false
     # config.semantic_logger.add_appender(io: $stdout, formatter: config.rails_semantic_logger.format)
+    # If using the default Rails logger
+    logger           = ActiveSupport::Logger.new($stdout)
+    logger.formatter = config.log_formatter
+    config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
+
+  # Stackdriver Google Cloud Logging: https://github.com/googleapis/google-cloud-ruby/blob/main/stackdriver/INSTRUMENTATION_CONFIGURATION.md
+  StackdriverUtils.setup
 
   # Flipper mount options
   config.flipper.mount_options = {

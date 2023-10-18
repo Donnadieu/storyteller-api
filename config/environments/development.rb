@@ -19,11 +19,10 @@ Rails.application.configure do |_app|
   # Enable server timing
   config.server_timing = true
 
-  # Stackdriver Google Cloud Logging: https://github.com/googleapis/google-cloud-ruby/blob/main/stackdriver/INSTRUMENTATION_CONFIGURATION.md
-  config.google_cloud.use_logging = StackdriverUtils.enabled?
-  # config.google_cloud.use_error_reporting = StackdriverUtils.enabled?
-  # config.google_cloud.use_trace = StackdriverUtils.enabled?
   config.log_level = :debug
+
+  # Stackdriver Google Cloud Logging: https://github.com/googleapis/google-cloud-ruby/blob/main/stackdriver/INSTRUMENTATION_CONFIGURATION.md
+  StackdriverUtils.setup
 
   # # Log a JSON format file
   # config.semantic_logger.add_appender(file_name: "log/#{Rails.env}.json", formatter: :json)
