@@ -21,12 +21,6 @@ Rails.application.configure do |_app|
 
   config.log_level = :debug
 
-  # Stackdriver Google Cloud Logging: https://github.com/googleapis/google-cloud-ruby/blob/main/stackdriver/INSTRUMENTATION_CONFIGURATION.md
-  StackdriverUtils.setup
-
-  # # Log a JSON format file
-  # config.semantic_logger.add_appender(file_name: "log/#{Rails.env}.json", formatter: :json)
-
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp/caching-dev.txt').exist?
