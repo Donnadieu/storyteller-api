@@ -30,10 +30,7 @@ module StackdriverUtils
     end
 
     def enabled?
-      @enabled ||= begin
-        %w[1 yes true].include?(ENV.fetch('STACKDRIVER_ENABLED', true).to_s) ||
-          Rails.env.production?
-      end
+      @enabled ||= %w[1 yes true].include?(ENV.fetch('STACKDRIVER_ENABLED', false).to_s)
     end
 
     private

@@ -27,7 +27,7 @@ module StorytellerApi
     config.eager_load_paths += config.extra_load_paths
 
     # Setup cloud logging
-    StackdriverUtils.setup
+    StackdriverUtils.setup if StackdriverUtils.enabled?
 
     config.log_tags = { request_id: :request_id, ip: :remote_ip }
 
