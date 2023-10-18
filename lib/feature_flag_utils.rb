@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Helper methods for working with feature flags
 module FeatureFlagUtils
   class << self
     def initialized?
@@ -13,6 +14,13 @@ module FeatureFlagUtils
 
       [:feat__apple_login].each do |feat_name|
         Flipper.enable(feat_name) unless Flipper.exist?(feat_name)
+      end
+    end
+
+    def log_status(actor = nil)
+      Flipper.features.each do |feature|
+        enabled = actor.nil? ? feature.enabled? : feature.enabled?(actor)
+        Rails.logger.info "📦Feature [#{feature.name}] is #{enabled ? 'enabled' : 'disabled'}"
       end
     end
   end
