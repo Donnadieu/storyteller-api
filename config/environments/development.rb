@@ -2,7 +2,7 @@
 
 require 'active_support/core_ext/integer/time'
 
-Rails.application.configure do
+Rails.application.configure do |_app|
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
@@ -18,6 +18,11 @@ Rails.application.configure do
 
   # Enable server timing
   config.server_timing = true
+
+  # Doc for Stackdriver on local: https://cloud.google.com/logging/docs/setup/ruby#run-local
+  StackdriverUtils.setup
+
+  config.log_level = :debug
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.

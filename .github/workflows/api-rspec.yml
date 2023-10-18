@@ -11,6 +11,10 @@ jobs:
       RAILS_ENV: test
       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
       PROJECT_ROOT: .
+      # TODO: Enabling the line below will output test logs to the cloud.
+      #   We need to test that doing this within a PR will stream that PR's
+      #   log output in the test environment to the cloud logger
+      STACKDRIVER_ENABLED: false
 
     steps:
     - uses: actions/checkout@v2
