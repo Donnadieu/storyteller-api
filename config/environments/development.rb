@@ -19,6 +19,9 @@ Rails.application.configure do |_app|
   # Enable server timing
   config.server_timing = true
 
+  # Doc for Stackdriver on local: https://cloud.google.com/logging/docs/setup/ruby#run-local
+  StackdriverUtils.setup
+
   config.log_level = :debug
 
   # Enable/disable caching. By default caching is disabled.

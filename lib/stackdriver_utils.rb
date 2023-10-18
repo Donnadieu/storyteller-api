@@ -5,7 +5,6 @@ require 'fileutils'
 # Helper methods for configuring Stackdriver: https://github.com/googleapis/google-cloud-ruby/blob/main/stackdriver/INSTRUMENTATION_CONFIGURATION.md
 module StackdriverUtils
   class << self
-    # Documentation for stackdriver setup: https://cloud.google.com/logging/docs/setup/ruby#run-local
     def setup
       return if config.private_key.nil?
       return if config.private_key.credential.nil?
