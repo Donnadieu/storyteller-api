@@ -34,7 +34,7 @@ Style:
   Enabled: true
 
 Style/Documentation:
-  Enabled: true
+  Enabled: false
   Exclude:
     - 'config/initializers/*.rb'
     - 'db/migrate/*.rb'
