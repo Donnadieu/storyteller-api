@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FeatureFlagUtils
   class << self
     def initialized?
@@ -7,10 +9,10 @@ module FeatureFlagUtils
     def setup_defaults
       return if Rails.env.test?
 
-      if defined? Flipper
-        [:feat__apple_login].each do |feat_name|
-          Flipper.enable(feat_name) unless Flipper.exist?(feat_name)
-        end
+      return unless defined? Flipper
+
+      [:feat__apple_login].each do |feat_name|
+        Flipper.enable(feat_name) unless Flipper.exist?(feat_name)
       end
     end
   end

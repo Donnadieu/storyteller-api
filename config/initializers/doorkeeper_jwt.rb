@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Doorkeeper::JWT.configure do
   # Set the payload for the JWT token. This should contain unique information
   # about the user. Defaults to a randomly generated token in a hash:
@@ -25,6 +27,7 @@ Doorkeeper::JWT.configure do
       }
     }
   end
+  # rubocop:disable Layout/LineLength
 
   # Optionally set additional headers for the JWT. See
   # https://tools.ietf.org/html/rfc7515#section-4.1
@@ -51,4 +54,6 @@ Doorkeeper::JWT.configure do
   # Specify encryption type (https://github.com/progrium/ruby-jwt). Defaults to
   # `nil`.
   encryption_method :hs256
+
+  # rubocop:enable Layout/LineLength
 end

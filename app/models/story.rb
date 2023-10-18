@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Story < ApplicationRecord
   has_many :user_stories
   has_many :users, through: :user_stories

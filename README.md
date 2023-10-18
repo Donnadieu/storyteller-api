@@ -1,9 +1,14 @@
 # StorySprout API
 
-- [StorySprout API](#storysprout-api)
-  - [Development](#development)
-    - [Using NGROK](#using-ngrok)
-    - [Managing application secrets](#managing-application-secrets)
+<!-- TOC -->
+* [StorySprout API](#storysprout-api)
+  * [Development](#development)
+    * [Setup](#setup-)
+    * [Managing application secrets](#managing-application-secrets)
+    * [Using NGROK](#using-ngrok)
+  * [Operations](#operations)
+  * [Future reading](#future-reading)
+<!-- TOC -->
 
 > The rails auto-generated README has been moved [here](docs/RAILS.md)
 
@@ -22,6 +27,28 @@ brew bundle check
 brew bundle
 ```
 
+### Managing application secrets
+
+To edit credentials in your IDE, run the following command in your console:
+
+```shell
+thor story-cli:secrets:edit
+```
+
+To view help information about managing application credentials, run the following command in your console:
+
+```shell
+bin/rails credentials:help
+```
+
+To edit the credentials file for your development environment using the rails credentials scripts 
+and your command line, run the following code in your console:
+
+```shell
+EDITOR=nano bin/rails credentials:edit --environment ${RAILS_ENV:-development}
+```
+
+
 ### Using NGROK
 
 Follow these steps to setup `ngrok` for your local environment:
@@ -34,19 +61,12 @@ Follow these steps to setup `ngrok` for your local environment:
   ```
 Then you can open a tunnel to your local environment by running:
 ```shell
-thor story-sprout-cli:tunnel:open_all
+thor story-cli:tunnel:open_all
 ```
 
-### Managing application secrets 
+## Operations
 
-To view help information about managing application credentials, run the following command in your console:
+## Future reading
 
-```shell
-bin/rails credentials:help
-```
-
-To edit the credentials file for your development environment, run the following code in your console:
-
-```shell
-EDITOR=nano bin/rails credentials:edit --environment ${RAILS_ENV:-development}
-```
+- Testing flipper feature flags: https://www.flippercloud.io/docs/testing
+- Application logs with GCP logging: https://cloud.google.com/logging/docs?_ga=2.7398139.-852036619.1641716250

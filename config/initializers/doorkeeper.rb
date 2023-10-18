@@ -9,12 +9,10 @@ Doorkeeper.configure do
   resource_owner_authenticator do
     # Put your resource owner authentication logic here.
     # Example implementation:
-    
-    if current_user
-      current_user
-    else
-      return head :forbidden
-    end
+
+    return head :forbidden unless current_user
+
+    current_user
   end
 
   # If you didn't skip applications controller from Doorkeeper routes in your application routes.rb
@@ -25,7 +23,7 @@ Doorkeeper.configure do
   # admin_authenticator do
   #   # Put your admin authentication logic here.
   #   # Example implementation:
-  
+
   #   if current_user
   #     head :forbidden unless current_user.admin?
   #   else

@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-load Rails.root.join('lib/tasks/story-sprout-cli/tunnel.thor')
+load Rails.root.join('lib/tasks/story-cli/tunnel.thor')
 
-module StorySproutCLI
+module StoryCLI
   describe Tunnel, type: :task, devtool: true do
     subject { described_class.new }
 
@@ -17,17 +19,17 @@ module StorySproutCLI
 
       it 'successfully opens the tunnel' do
         with_modified_env(NGROK_AUTH_TOKEN: 'mock-auth-token') do
-          expect {
+          expect do
             subject.invoke(:open_all, [], verbose: true, dry_run: true)
-          }.to output(/\(dry-run\): ngrok start --all/).to_stdout
+          end.to output(/\(dry-run\): ngrok start --all/).to_stdout
         end
       end
 
       it 'fails and exits if the NGROK_AUTH_TOKEN is not set' do
         with_modified_env(NGROK_AUTH_TOKEN: nil) do
-          expect {
+          expect do
             subject.invoke(:open_all, [], verbose: true, dry_run: true)
-          }.to output(/No ngrok auth token found/).to_stdout
+          end.to output(/No ngrok auth token found/).to_stdout
         end
       end
     end
@@ -37,7 +39,7 @@ module StorySproutCLI
         let(:expected_shell_output) { `command -v realpath`.chomp }
 
         it 'returns true|false depending on whether command file exists' do
-          expect(subject.send(:has_realpath_cmd?)).to be { File.exists? expected_shell_output }
+          expect(subject.send(:has_realpath_cmd?)).to(be { File.exist? expected_shell_output })
         end
       end
     end
@@ -47,7 +49,7 @@ module StorySproutCLI
         let(:expected_shell_output) { `command -v python3`.chomp }
 
         it 'returns true|false depending on whether command file exists' do
-          expect(subject.send(:has_python_3?)).to be { File.exists? expected_shell_output }
+          expect(subject.send(:has_python_3?)).to(be { File.exist? expected_shell_output })
         end
       end
     end

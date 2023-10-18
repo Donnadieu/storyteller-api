@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Authorizable
   extend ActiveSupport::Concern
 
@@ -9,9 +11,7 @@ module Authorizable
       secret: auth_params[:client_secret]
     )
 
-    if app.nil?
-      raise Errors::Unauthorized
-    end
+    raise Errors::Unauthorized if app.nil?
 
     @client = app
   end

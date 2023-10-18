@@ -23,7 +23,7 @@ class CreateDoorkeeperTables < ActiveRecord::Migration[7.0]
       t.references :application,     null: false
       t.string   :token,             null: false
       t.integer  :expires_in,        null: false
-      t.text     :redirect_uri,       null: true
+      t.text     :redirect_uri, null: true
       t.string   :scopes,            null: false, default: ''
       t.datetime :created_at,        null: false
       t.datetime :revoked_at
@@ -70,13 +70,13 @@ class CreateDoorkeeperTables < ActiveRecord::Migration[7.0]
       #
       # Comment out this line if you want refresh tokens to be instantly
       # revoked after use.
-      t.string   :previous_refresh_token, null: false, default: ""
+      t.string   :previous_refresh_token, null: false, default: ''
     end
 
     add_index :oauth_access_tokens, :token, unique: true
 
     # See https://github.com/doorkeeper-gem/doorkeeper/issues/1592
-    if ActiveRecord::Base.connection.adapter_name == "SQLServer"
+    if ActiveRecord::Base.connection.adapter_name == 'SQLServer'
       execute <<~SQL.squish
         CREATE UNIQUE NONCLUSTERED INDEX index_oauth_access_tokens_on_refresh_token ON oauth_access_tokens(refresh_token)
         WHERE refresh_token IS NOT NULL
