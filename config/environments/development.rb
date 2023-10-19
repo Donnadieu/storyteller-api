@@ -20,16 +20,26 @@ Rails.application.configure do |app|
   config.server_timing = true
 
   # Doc for Stackdriver on local: https://cloud.google.com/logging/docs/setup/ruby#run-local
-  StackdriverUtils.setup if StackdriverUtils.enabled?
+  if StackdriverUtils.enabled?
+    StackdriverUtils.setup
+  else
+    config.google_cloud.use_trace = false
+    config.google_cloud.use_logging = false
+    config.google_cloud.use_error_reporting = false
+    config.google_cloud.use_debugger = false
+  end
 
-  # config.logger = Logtail::Logger.create_default_logger("zBwtbf9gGqdCUVKrxtPo7mhi")
-  # SemanticLogger.add_appender(
-  #   appender: :http, url: 'https://in.logs.betterstack.com'
+  # TODO: Setup logtail appender (currently failing with an SSL error)
+  #   the error seems related to forking (multiple processes)
+  # logtail_appender = SemanticLogger::Appender::Http.new(
+  #   url: 'https://in.logs.betterstack.com',
+  #   # ssl: { verify: OpenSSL::SSL::VERIFY_NONE },
+  #   header: {
+  #     'Content-Type': 'application/json',
+  #     Authorization: "Bearer #{app.credentials.logtail.source_token}"
+  #   }
   # )
-  # TODO: See SemanticLogger::Subscriber to create a subscriber for Logtail
-  # SemanticLogger.add_appender(
-  #   appender: Logtail::Logger.create_logger(app.credentials.logtail.source_token)
-  # )
+  # SemanticLogger.add_appender(appender: logtail_appender)
 
   config.log_level = :debug
 
