@@ -62,6 +62,9 @@ group :development do
   # TODO: Keeping this gem out of production for now while we're still
   #   exploring the spike to use GCP cloud logging (vs. a cloud logging service)
   gem 'stackdriver', '~> 0.21'
+
+  # Better Stack Rails integration
+  gem 'logtail-rails'
 end
 
 gem 'apple_id', '~> 1.6'

@@ -2,7 +2,7 @@
 
 require 'active_support/core_ext/integer/time'
 
-Rails.application.configure do |_app|
+Rails.application.configure do |app|
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
@@ -20,7 +20,27 @@ Rails.application.configure do |_app|
   config.server_timing = true
 
   # Doc for Stackdriver on local: https://cloud.google.com/logging/docs/setup/ruby#run-local
-  StackdriverUtils.setup
+  if StackdriverUtils.enabled?
+    StackdriverUtils.setup
+  else
+    config.google_cloud.use_trace = false
+    config.google_cloud.use_logging = false
+    config.google_cloud.use_error_reporting = false
+    config.google_cloud.use_debugger = false
+  end
+
+  # TODO: Setup logtail appender (currently failing with an SSL error):
+  #   "OpenSSL::SSL::SSLError: SSL_read: sslv3 alert bad record mac"
+  #   the error seems related to forking (multiple processes)
+  # logtail_appender = SemanticLogger::Appender::Http.new(
+  #   url: 'https://in.logs.betterstack.com',
+  #   # ssl: { verify: OpenSSL::SSL::VERIFY_NONE },
+  #   header: {
+  #     'Content-Type': 'application/json',
+  #     Authorization: "Bearer #{app.credentials.logtail.source_token}"
+  #   }
+  # )
+  # SemanticLogger.add_appender(appender: logtail_appender)
 
   config.log_level = :debug
 
