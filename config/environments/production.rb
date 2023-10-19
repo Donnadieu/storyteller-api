@@ -50,6 +50,9 @@ Rails.application.configure do
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
 
+  # Filter sensitive information out of logs
+  config.filter_parameters += %w[credential]
+
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 

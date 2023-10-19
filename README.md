@@ -73,4 +73,5 @@ Application logs are captured by [the Google Cloud Logging service](https://clou
 
 ## Future reading
 
-- Testing flipper feature flags: https://www.flippercloud.io/docs/testing
+- [The Rails guide (v7.0.x)](https://guides.rubyonrails.org/v7.0/index.html)
+- [Testing flipper feature flags](https://www.flippercloud.io/docs/testing)
