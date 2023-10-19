@@ -29,7 +29,8 @@ Rails.application.configure do |app|
     config.google_cloud.use_debugger = false
   end
 
-  # TODO: Setup logtail appender (currently failing with an SSL error)
+  # TODO: Setup logtail appender (currently failing with an SSL error):
+  #   "OpenSSL::SSL::SSLError: SSL_read: sslv3 alert bad record mac"
   #   the error seems related to forking (multiple processes)
   # logtail_appender = SemanticLogger::Appender::Http.new(
   #   url: 'https://in.logs.betterstack.com',
