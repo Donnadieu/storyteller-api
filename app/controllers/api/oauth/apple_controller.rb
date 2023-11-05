@@ -25,9 +25,9 @@ module Api
         begin
           verify_back_channel_id_token!
           # TODO: I was getting an unauthorized error at this stage with "code has already been used".
-          #   It seems that we are likely over-verifying the ID token. Skipping the FE verification since
-          #   we only check the BE verification results downstream of this block
-          # verify_front_channel_id_token!
+          #   It seems that we are likely over-verifying the ID token. Feature flagging the FE verification
+          #   for now since we only check the BE verification results downstream of this block
+          verify_front_channel_id_token! if Flipper.enabled?(:feat__verify_front_channel_id_token)
         rescue AppleID::Client::Error => e
           puts e # gives useful messages from apple on failure
           raise Errors::Unauthorized
