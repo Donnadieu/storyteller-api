@@ -40,8 +40,8 @@ module StoryCLI
       config_files = []
       app_config_file = File.join(project_root, 'config', 'ngrok.yml')
       profile_config_file = ENV.fetch('NGROK_PROFILE_CONFIG_PATH', nil)
-      config_files << profile_config_file if File.exist?(profile_config_file)
-      config_files << app_config_file if File.exist?(app_config_file)
+      config_files << profile_config_file if profile_config_file.present? && File.exist?(profile_config_file)
+      config_files << app_config_file if app_config_file.present? && File.exist?(app_config_file)
 
       if verbose?
         puts <<~BANNER
