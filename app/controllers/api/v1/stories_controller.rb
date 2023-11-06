@@ -67,7 +67,12 @@ module Api
         response = openai_client.completions(
           parameters: {
             model: 'gpt-3.5-turbo-instruct',
-            prompt: "Write a 10 page story about #{story_params[:subject]} with a hero named #{story_params[:hero]}, set in a place called #{story_params[:place]}, featuring a #{story_params[:character]} which you need to name, and a significant object referred to as #{story_params[:object]}. The story must be age-appropriate for kids between #{story_params[:age]} years old. Split your response into 10 pages, with each page containing 500 characters start each with \"Page 1\", \"Page 2\", etc. And mark the end of the story with \"The End\".",
+            prompt: "Write a 10 page story about #{story_params[:subject]} with a hero named #{story_params[:hero]}, "\
+              "set in a place called #{story_params[:place]}, featuring a #{story_params[:character]} which you need "\
+              "to name, and a significant object referred to as #{story_params[:object]}. The story must be "\
+              "age-appropriate for kids between #{story_params[:age]} years old. Split your response into 10 pages, "\
+              'with each page containing 500 characters start each with "Page 1", "Page 2", etc. And mark the end '\
+              'of the story with "The End".',
             max_tokens: 1000,
             temperature: 0.9,
             top_p: 1,
