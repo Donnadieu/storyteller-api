@@ -12,7 +12,10 @@ module FeatureFlagUtils
 
       return unless defined? Flipper
 
-      [:feat__apple_login].each do |feat_name|
+      %i[
+        feat__apple_login
+        feat__story_builder_service
+      ].each do |feat_name|
         Flipper.enable(feat_name) unless Flipper.exist?(feat_name)
       end
     end
