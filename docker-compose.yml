@@ -1,0 +1,34 @@
+version: '3.6'
+
+services:
+  redis: # https://hub.docker.com/_/redis
+    image: redis:7.2.3
+    container_name: redis.storysprout.local
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    volumes:
+      - ${DATABASE_ROOT_DIR:-'.'}/redis:/data
+
+  db:
+    image: postgres:15.4
+    container_name: db.storysprout.local
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    # POSTGRES_HOST_AUTH_METHOD: trust # IMPORTANT allows all connections without a password - experimental only!
+    ports:
+      - '5432:5432'
+    # IMPORTANT: Be sure to [mkdir -p] these volume paths on your local
+    #   before running [docker compose up] for the first time
+    volumes:
+      - ${DATABASE_ROOT_DIR:-'.'}/postgresql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ${DATABASE_ROOT_DIR:-'.'}/postgresql/data:/var/lib/postgresql/data
+      - ${DATABASE_ROOT_DIR:-'.'}/postgresql/downloads:/usr/local/downloads
+
+networks:
+  default:
+    name: storysprout_local_network
+    driver: bridge

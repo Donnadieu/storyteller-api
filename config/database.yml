@@ -5,21 +5,25 @@
 #   gem "sqlite3"
 #
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV.fetch('DATABASE_HOST', '127.0.0.1') %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  port: <%= ENV.fetch('DATABASE_PORT', 5432) %>
+  username: <%= ENV.fetch('DATABASE_USER', Rails.application.credentials.database.user) %>
+  password: <%= ENV.fetch('DATABASE_PASSWORD', Rails.application.credentials.database.password) %>
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: storysprout_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: storysprout_test
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  url: <%= ENV['DATABASE_URL'] %>

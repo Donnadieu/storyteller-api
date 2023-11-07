@@ -20,6 +20,8 @@ module StorytellerApi
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
+    config.time_zone = 'Eastern Time (US & Canada)'
+
     config.extra_load_paths = [
       'lib/tasks'
     ].map { |path| Rails.root.join(path).to_s }

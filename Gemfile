@@ -67,6 +67,10 @@ group :development do
   gem 'logtail-rails'
 end
 
+group :test do
+  gem 'database_cleaner-active_record'
+end
+
 gem 'apple_id', '~> 1.6'
 
 gem 'flipper', '~> 0.28.3'
