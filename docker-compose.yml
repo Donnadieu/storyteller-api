@@ -10,7 +10,7 @@ services:
     volumes:
       - ${DATABASE_ROOT_DIR:-'.'}/redis:/data
 
-  db:
+  db: # https://hub.docker.com/_/postgres
     image: postgres:15.4
     container_name: db.storysprout.local
     restart: unless-stopped
