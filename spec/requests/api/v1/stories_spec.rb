@@ -158,16 +158,16 @@ RSpec.describe 'api/v1/stories', type: :request do
     end
 
     context 'when the user is authenticated' do
-      it 'returns not implemented' do
+      it 'returns not found' do
         patch api_v1_story_url(1), headers: valid_headers, as: :json
-        expect(response).to have_http_status(:not_implemented)
+        expect(response).to have_http_status(:not_found)
       end
     end
 
     context 'when the user is not authenticated' do
-      it 'returns not implemented' do
-        patch api_v1_story_url(1), headers: valid_headers, as: :json
-        expect(response).to have_http_status(:not_implemented)
+      it 'returns unauthorized' do
+        patch api_v1_story_url(1), headers: invalid_headers, as: :json
+        expect(response).to have_http_status(:unauthorized)
       end
     end
   end
