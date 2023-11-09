@@ -53,6 +53,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'shoulda-matchers'
+  gem 'strong_migrations'
 end
 
 group :development do
@@ -65,6 +66,10 @@ group :development do
 
   # Better Stack Rails integration
   gem 'logtail-rails'
+end
+
+group :test do
+  gem 'database_cleaner-active_record'
 end
 
 gem 'apple_id', '~> 1.6'
