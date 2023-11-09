@@ -95,7 +95,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_09_120548) do
   end
 
   create_table "user_stories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.bigint "numeric_id", default: -> { "nextval('user_stories_id_seq'::regclass)" }, null: false
     t.bigint "user_id", null: false
     t.bigint "story_id", null: false
     t.datetime "purchased_at"
@@ -105,6 +104,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_09_120548) do
     t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "numeric_id"
     t.uuid "user_uuid"
     t.uuid "story_uuid"
     t.index ["id"], name: "index_user_stories_on_id", unique: true
