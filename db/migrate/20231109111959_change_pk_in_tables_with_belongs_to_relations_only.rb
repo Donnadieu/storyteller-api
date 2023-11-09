@@ -14,10 +14,12 @@ class ChangePkInTablesWithBelongsToRelationsOnly < ActiveRecord::Migration[7.0]
   #   - oauth_access_grants
   #   - oauth_access_tokens
   #   - oauth_applications
+  #   - flipper_features
+  #   - flipper_gates
   #   - stories
   #   - users
   #
-  TABLES = %i[flipper_features flipper_gates user_stories].freeze
+  TABLES = %i[user_stories].freeze
 
   disable_ddl_transaction!
 

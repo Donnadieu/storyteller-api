@@ -3,15 +3,15 @@
 class AddUuidToAllTables < ActiveRecord::Migration[7.0]
   disable_ddl_transaction!
 
-  TABLES = %i[
-    oauth_access_tokens
-    oauth_access_grants
-    oauth_applications
-    flipper_features
-    flipper_gates
-    user_stories
-    users
-    stories
+  TABLES = [
+    :oauth_access_tokens,
+    :oauth_access_grants,
+    :oauth_applications,
+    :flipper_features, # Just adding this for now. Won't complete migration in phase 2 (if at all)
+    :flipper_gates, # Just adding this for now. Won't complete migration in phase 2 (if at all)
+    :user_stories,
+    :users,
+    :stories
   ].freeze
 
   def up
