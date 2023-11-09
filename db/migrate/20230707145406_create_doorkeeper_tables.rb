@@ -33,7 +33,8 @@ class CreateDoorkeeperTables < ActiveRecord::Migration[7.0]
     add_foreign_key(
       :oauth_access_grants,
       :oauth_applications,
-      column: :application_id
+      column: :application_id,
+      validate: false
     )
 
     create_table :oauth_access_tokens do |t|
@@ -88,11 +89,18 @@ class CreateDoorkeeperTables < ActiveRecord::Migration[7.0]
     add_foreign_key(
       :oauth_access_tokens,
       :oauth_applications,
-      column: :application_id
+      column: :application_id,
+      validate: false
     )
 
     # Uncomment below to ensure a valid reference to the resource owner's table
-    add_foreign_key :oauth_access_grants, :users, column: :resource_owner_id
-    add_foreign_key :oauth_access_tokens, :users, column: :resource_owner_id
+    add_foreign_key(
+      :oauth_access_grants,
+      :users,
+      column: :resource_owner_id, validate: false)
+    add_foreign_key(
+      :oauth_access_tokens,
+      :users,
+      column: :resource_owner_id, validate: false)
   end
 end

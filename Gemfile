@@ -53,6 +53,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'shoulda-matchers'
+  gem 'strong_migrations'
 end
 
 group :development do
