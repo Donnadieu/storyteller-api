@@ -10,6 +10,7 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-*
+/db/development/redis/*
 /db/development/postgresql/data/*
 !/db/development/postgresql/docker-entrypoint-initdb.d/*
 
