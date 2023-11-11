@@ -24,6 +24,16 @@ module StoryCLI
       true
     end
 
+    desc 'start', 'Start the docker containers'
+    def start
+      cmd = 'docker compose up -d && docker compose logs --follow --tail --since=15m'
+      puts "Will execute#{dry_run? ? ' (Dry-run)' : ''}: #{cmd}" if verbose? || dry_run?
+
+      unless dry_run?
+        system(cmd, out: $stdout)
+      end
+    end
+
     desc 'clean', 'Clean up docker files, volumes, images and containers'
     def clean
       puts <<~HEREDOC
@@ -42,7 +52,7 @@ module StoryCLI
     private
 
     def database_path
-      Rails.root.join('db', ENV.fetch('RAILS_ENV', 'development')).to_s
+      Rails.root.join('db', ENV.fetch('RAILS_ENV', 'development'), 'postgresql', 'data').to_s
     end
 
     def dry_run?
