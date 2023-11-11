@@ -12,7 +12,6 @@
 /db/*.sqlite3-*
 /db/development/redis/*
 /db/development/postgresql/data/*
-!/db/development/postgresql/docker-entrypoint-initdb.d/*
 
 # Ignore all logfiles and tempfiles.
 /log/*
