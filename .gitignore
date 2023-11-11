@@ -11,6 +11,7 @@
 /db/*.sqlite3
 /db/*.sqlite3-*
 /db/development/*
+!/db/development/postgresql/docker-entrypoint-initdb.d/*
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -34,6 +35,9 @@
 /config/credentials/*.key
 /config/credentials/*.service-account.json
 /config/credentials/*.iam.gserviceaccount.com.json
+
+# Ignore secrets
+/config/secrets/*
 
 # Ignore some IDE files
 /.idea
