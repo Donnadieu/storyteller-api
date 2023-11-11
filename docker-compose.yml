@@ -15,10 +15,13 @@ services:
     container_name: db.storysprout.local
     restart: unless-stopped
     environment:
-      POSTGRES_DB: ${DATABASE_NAME}
-      POSTGRES_USER: ${DATABASE_USER}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: storysprout_development
+      POSTGRES_USER_FILE: /run/secrets/database-user
+      POSTGRES_PASSWORD_FILE: /run/secrets/database-password
       # POSTGRES_HOST_AUTH_METHOD: trust # IMPORTANT allows all connections without a password - experimental only!
+    secrets:
+      - database-user
+      - database-password
     ports:
       - '5432:5432'
     # IMPORTANT: Be sure to [mkdir -p] these volume paths on your local
@@ -32,3 +35,9 @@ networks:
   default:
     name: storysprout_local_network
     driver: bridge
+
+secrets:
+  database-user:
+    file: ./config/secrets/database-user.txt
+  database-password:
+    file: ./config/secrets/database-password.txt
