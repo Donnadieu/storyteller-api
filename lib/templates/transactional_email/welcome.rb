@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module TransactionalEmail
+  # Template sharing URL: https://my.brevo.com/template/3Tpg_IlAnA_RtXDSJ5_X2KXI1LfSU9wDKCtzn0JhM773maaiyc.MAtU3
   class Welcome
     # TODO: Include support for GlobalID
     def initialize(email: nil, name: nil, user_id: nil)
