@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Development: API" type="RailsRunConfigurationType" factoryName="Rails">
-    <module name="storyteller-api" />
+    <module name="api" />
     <predefined_log_file enabled="true" id="RUBY_RAILS_SERVER" />
     <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
     <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />

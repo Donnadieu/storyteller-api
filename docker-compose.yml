@@ -1,0 +1,22 @@
+version: '3.6'
+
+services:
+  redis: # https://hub.docker.com/_/redis
+    image: redis:7.2.3
+    container_name: redis.storysprout.local
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    volumes:
+      - ${DATABASE_ROOT_DIR:-'.'}/redis:/data
+
+networks:
+  default:
+    name: storysprout_local_network
+    driver: bridge
+
+secrets:
+  database-user:
+    file: ./config/secrets/database-user.txt
+  database-password:
+    file: ./config/secrets/database-password.txt

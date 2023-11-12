@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="dev" type="CompoundRunConfigurationType">
+    <toRun name="Development: Sidekiq" type="CommandRunConfigurationType" />
+    <toRun name="Development: API" type="RailsRunConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>
