@@ -24,7 +24,7 @@ module TransactionalEmail
       email = SibApiV3Sdk::SendSmtpEmail.new(
         to: @recipients,
         template_id: self.class.template_id,
-        params: {}
+        params: { SHOW_SOCIAL_LINKS: false }
       )
       api_instance = SibApiV3Sdk::TransactionalEmailsApi.new
       # Returns a boolean if the email is sent successfully
