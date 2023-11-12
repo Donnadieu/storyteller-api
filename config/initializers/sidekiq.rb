@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
+require 'redis_connection'
+
 Sidekiq.configure_server do |config|
-  config.redis = { url: "#{ENV.fetch('REDIS_URL')}/0" }
+  config.redis = RedisConnection.connection_params
 end
 
 Sidekiq.configure_client do |config|
-  config.redis = { url: "#{ENV.fetch('REDIS_URL')}/0" }
+  config.redis = RedisConnection.connection_params
 end

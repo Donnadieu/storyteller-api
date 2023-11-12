@@ -20,8 +20,9 @@ module StorytellerApi
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
-    config.extra_load_paths = [
-      'lib/tasks'
+    config.extra_load_paths = %w[
+      lib/tasks
+      lib/templates
     ].map { |path| Rails.root.join(path).to_s }
     config.autoload_paths += config.extra_load_paths
     config.eager_load_paths += config.extra_load_paths
@@ -47,6 +48,8 @@ module StorytellerApi
 
     # Configure allowed hosts. See doc https://guides.rubyonrails.org/configuring.html#actiondispatch-hostauthorization
     config.hosts += config_for(:allowed_hosts)
+
+    config.active_job.queue_adapter = :sidekiq
 
     config.generators do |g|
       g.test_framework :rspec

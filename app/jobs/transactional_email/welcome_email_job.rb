@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module TransactionalEmail
-  class WelcomeJob
-    include Sidekiq::Job
-
+  class WelcomeEmailJob < ApplicationJob
     def perform(user_id)
       # Do something
     end
