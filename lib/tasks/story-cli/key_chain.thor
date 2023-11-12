@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'thor'
+require 'fileutils'
 
 module StoryCLI
   # Manage credentials for the rails app
@@ -45,6 +46,26 @@ module StoryCLI
       return if dry_run?
 
       system(command_to_run, out: $stdout)
+    end
+
+    desc 'print_keyfile', 'Print the contents of an input key file as a string'
+    option :keyfile,
+           type: :string,
+           aliases: '-i',
+           desc: 'Keyfile to print',
+           required: true
+    def print_keyfile
+      file_name = options[:keyfile].gsub(/^~/, ENV['HOME'])
+
+      unless File.exist?(file_name)
+        raise ActiveStorage::FileNotFoundError,
+              "Key file not found: #{file_name}"
+      end
+
+      key_data = File.read(file_name)
+      puts key_data.dump
+    rescue ActiveStorage::FileNotFoundError => error
+      puts error
     end
 
     private

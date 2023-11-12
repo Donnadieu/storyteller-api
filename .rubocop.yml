@@ -34,12 +34,5 @@ Style:
   Enabled: true
 
 Style/Documentation:
-  Enabled: true
-  Exclude:
-    - 'config/initializers/*.rb'
-    - 'db/migrate/*.rb'
-    - 'app/controllers/api/v1/health_controller.rb'
-    - 'app/controllers/application_controller.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'app/controllers/users/**/*'
-    - 'spec/**/*'
+  Enabled: false
+

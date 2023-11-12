@@ -50,6 +50,9 @@ Rails.application.configure do
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
 
+  # Filter sensitive information out of logs
+  config.filter_parameters += %w[credential]
+
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
@@ -78,9 +81,14 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
   if ENV['RAILS_LOG_TO_STDOUT'].present?
-    logger           = ActiveSupport::Logger.new($stdout)
-    logger.formatter = config.log_formatter
-    config.logger    = ActiveSupport::TaggedLogging.new(logger)
+    # If using rails_semantic_logger
+    $stdout.sync = true
+    # config.rails_semantic_logger.add_file_appender = false
+    config.semantic_logger.add_appender(io: $stdout)
+    # # If using the default Rails logger
+    # logger           = ActiveSupport::Logger.new($stdout)
+    # logger.formatter = config.log_formatter
+    # config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
   # Flipper mount options

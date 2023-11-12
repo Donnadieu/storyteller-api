@@ -7,6 +7,7 @@
     * [Managing application secrets](#managing-application-secrets)
     * [Using NGROK](#using-ngrok)
   * [Operations](#operations)
+    * [Using logs](#using-logs)
   * [Future reading](#future-reading)
 <!-- TOC -->
 
@@ -66,7 +67,11 @@ thor story-cli:tunnel:open_all
 
 ## Operations
 
+### Using logs
+
+Application logs are captured by [the Google Cloud Logging service](https://cloud.google.com/logging/docs?_ga=2.7398139.-852036619.1641716250).
+
 ## Future reading
 
-- Testing flipper feature flags: https://www.flippercloud.io/docs/testing
-- Application logs with GCP logging: https://cloud.google.com/logging/docs?_ga=2.7398139.-852036619.1641716250
+- [The Rails guide (v7.0.x)](https://guides.rubyonrails.org/v7.0/index.html)
+- [Testing flipper feature flags](https://www.flippercloud.io/docs/testing)

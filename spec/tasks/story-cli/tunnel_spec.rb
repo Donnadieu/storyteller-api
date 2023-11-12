@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-load Rails.root.join('lib/tasks/story-cli/tunnel.thor')
+load_cli_script 'tunnel'
 
 module StoryCLI
   describe Tunnel, type: :task, devtool: true do
