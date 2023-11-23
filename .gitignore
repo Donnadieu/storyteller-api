@@ -41,6 +41,7 @@
 
 # Ignore some IDE files
 /.idea
+/.ide-configs
 
 ################################ macOS ###################################
 # General
