@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'admin_scope_constraint'
+require_relative '../../lib/admin_scope_constraint'
 require 'sidekiq/web'
 require 'sidekiq/cron/web'
 
