@@ -10,7 +10,8 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-*
-/db/development/*
+/db/development/redis/*
+/db/development/postgresql/data/*
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -34,6 +35,9 @@
 /config/credentials/*.key
 /config/credentials/*.service-account.json
 /config/credentials/*.iam.gserviceaccount.com.json
+
+# Ignore secrets
+/config/secrets/*
 
 # Ignore some IDE files
 /.idea
@@ -68,3 +72,5 @@ Temporary Items
 
 # Environtment variables
 .envrc
+
+/config/credentials/production.key
