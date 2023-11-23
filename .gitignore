@@ -72,5 +72,3 @@ Temporary Items
 
 # Environtment variables
 .envrc
-
-/config/credentials/production.key
