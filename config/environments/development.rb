@@ -21,18 +21,18 @@ Rails.application.configure do |app|
 
   config.log_level = :debug
 
+  # Doc for Stackdriver on local: https://cloud.google.com/logging/docs/setup/ruby#run-local
+  unless LoggerUtils::Stackdriver.enabled?
+    config.google_cloud.use_trace = false
+    config.google_cloud.use_logging = false
+    config.google_cloud.use_error_reporting = false
+    config.google_cloud.use_debugger = false
+  end
+
   # Wrapping the initialization of the logtail appender in a before_initialize
   # seems to resolve the SSL error described below.
   config.before_initialize do
-    # Doc for Stackdriver on local: https://cloud.google.com/logging/docs/setup/ruby#run-local
-    if LoggerUtils::Stackdriver.enabled?
-      LoggerUtils::Stackdriver.setup
-    else
-      config.google_cloud.use_trace = false
-      config.google_cloud.use_logging = false
-      config.google_cloud.use_error_reporting = false
-      config.google_cloud.use_debugger = false
-    end
+    LoggerUtils::Stackdriver.setup if LoggerUtils::Stackdriver.enabled?
 
     if LoggerUtils::BetterStack.enabled?
       # TODO: Setup logtail appender occasionally fails on startup with an SSL error:
