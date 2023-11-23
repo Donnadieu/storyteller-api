@@ -41,8 +41,8 @@ gem 'googleauth' # Google Auth Library for Ruby
 gem 'rack-cors'
 gem 'ruby-openai'
 
-gem 'sidekiq', '~> 7.2.0'
-gem 'sidekiq-cron'
+gem 'sidekiq', '~> 7.2.0' # Simple, efficient background processing for Ruby
+gem 'sidekiq-cron' # Scheduler/Cron for Sidekiq jobs
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
