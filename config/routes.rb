@@ -30,5 +30,7 @@ Rails.application.routes.draw do
     end
   end
 
-  draw(:flipper)
+  draw(:admin_routes)
+
+  draw(:flipper_routes)
 end

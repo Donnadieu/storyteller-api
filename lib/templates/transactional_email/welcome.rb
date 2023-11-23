@@ -22,12 +22,15 @@ module TransactionalEmail
     end
 
     def send!
+      # Docs https://github.com/sendinblue/APIv3-ruby-library/blob/master/docs/SendSmtpEmail.md
       email = SibApiV3Sdk::SendSmtpEmail.new(
         to: @recipients,
-        template_id: self.class.template_id,
+        templateId: self.class.template_id,
         params: { SHOW_SOCIAL_LINKS: false }
       )
+      # Docs https://github.com/sendinblue/APIv3-ruby-library/blob/master/docs/TransactionalEmailsApi.md
       api_instance = SibApiV3Sdk::TransactionalEmailsApi.new
+      # Docs https://github.com/sendinblue/APIv3-ruby-library/blob/master/docs/TransactionalEmailsApi.md#send_transac_email
       # Returns a boolean if the email is sent successfully
       api_instance.send_transac_email(email)
     rescue SibApiV3Sdk::ApiError => e

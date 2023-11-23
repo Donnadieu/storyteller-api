@@ -32,6 +32,12 @@ module StorytellerApi
 
     config.log_tags = { request_id: :request_id, ip: :remote_ip }
 
+    # Configure session storage (required to use Sidekiq web UI): https://guides.rubyonrails.org/api_app.html#using-session-middlewares
+    config.session_store :cookie_store, key: '_storysprout_session'
+    # Required for all session management (regardless of session_store)
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use config.session_store, config.session_options
+
     # Flipper mount options
     config.flipper.mount_options = {}
 

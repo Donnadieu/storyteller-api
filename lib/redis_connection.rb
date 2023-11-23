@@ -25,7 +25,7 @@ class RedisConnection
       return @redis_url if defined?(@redis_url)
 
       @redis_url ||= ENV.fetch('REDIS_TLS_URL', ENV.fetch('REDIS_URL', nil))
-      @redis_url ||= 'redis://localhost:6379'
+      @redis_url ||= 'redis://localhost:6379/0'
     end
   end
 end
