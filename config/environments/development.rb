@@ -25,8 +25,8 @@ Rails.application.configure do |app|
   # seems to resolve the SSL error described below.
   config.before_initialize do
     # Doc for Stackdriver on local: https://cloud.google.com/logging/docs/setup/ruby#run-local
-    if StackdriverUtils.enabled?
-      StackdriverUtils.setup
+    if LoggerUtils::Stackdriver.enabled?
+      LoggerUtils::Stackdriver.setup
     else
       config.google_cloud.use_trace = false
       config.google_cloud.use_logging = false
@@ -34,8 +34,7 @@ Rails.application.configure do |app|
       config.google_cloud.use_debugger = false
     end
 
-    # Defaults to sending DEV logs to BetterStack (FKA Logtail)
-    if ENV.fetch('BETTERSTACK_ENABLED', true).to_bool
+    if LoggerUtils::BetterStack.enabled?
       # TODO: Setup logtail appender occasionally fails on startup with an SSL error:
       #   "OpenSSL::SSL::SSLError: SSL_read: sslv3 alert bad record mac"
       #   the error seems related to forking (multiple processes). Here's a thread on
