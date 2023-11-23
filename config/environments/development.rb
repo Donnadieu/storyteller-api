@@ -34,19 +34,22 @@ Rails.application.configure do |app|
       config.google_cloud.use_debugger = false
     end
 
-    # TODO: Setup logtail appender occasionally fails on startup with an SSL error:
-    #   "OpenSSL::SSL::SSLError: SSL_read: sslv3 alert bad record mac"
-    #   the error seems related to forking (multiple processes). Here's a thread on
-    #   SO that might help resolve the issue: https://stackoverflow.com/a/51384262
-    logtail_appender = SemanticLogger::Appender::Http.new(
-      url: 'https://in.logs.betterstack.com',
-      ssl: { verify: OpenSSL::SSL::VERIFY_NONE },
-      header: {
-        'Content-Type': 'application/json',
-        Authorization: "Bearer #{app.credentials.logtail.source_token}"
-      }
-    )
-    SemanticLogger.add_appender(appender: logtail_appender)
+    # Defaults to sending DEV logs to BetterStack (FKA Logtail)
+    if ENV.fetch('BETTERSTACK_ENABLED', true).to_bool
+      # TODO: Setup logtail appender occasionally fails on startup with an SSL error:
+      #   "OpenSSL::SSL::SSLError: SSL_read: sslv3 alert bad record mac"
+      #   the error seems related to forking (multiple processes). Here's a thread on
+      #   SO that might help resolve the issue: https://stackoverflow.com/a/51384262
+      logtail_appender = SemanticLogger::Appender::Http.new(
+        url: 'https://in.logs.betterstack.com',
+        ssl: { verify: OpenSSL::SSL::VERIFY_NONE },
+        header: {
+          'Content-Type': 'application/json',
+          Authorization: "Bearer #{app.credentials.logtail.source_token}"
+        }
+      )
+      SemanticLogger.add_appender(appender: logtail_appender)
+    end
   end
 
   # # Setup BetterStack (FKA Loggtail) on Rails without Semantic Logger: https://betterstack.com/docs/logs/ruby-and-rails/#2-setup
