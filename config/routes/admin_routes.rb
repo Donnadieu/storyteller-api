@@ -2,6 +2,7 @@
 
 require 'admin_scope_constraint'
 require 'sidekiq/web'
+require 'sidekiq/cron/web'
 
 scope :admin, as: :admin do
   constraints AdminScopeConstraint.new do
