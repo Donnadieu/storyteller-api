@@ -17,7 +17,11 @@ class OnBoardSingleSignOnUser
       user.provider = provider
     end
 
-    context.fail!(message: "#{provider.to_s.humanize} user was not authorized") \
-      unless context.user.errors.none? && context.user.persisted?
+    if context.user.errors.any?
+      context.errors = context.user.errors.full_messages
+      context.fail!(
+        message: "There was a problem onboarding the user via #{provider.to_s.humanize} with email #{email}"
+      )
+    end
   end
 end

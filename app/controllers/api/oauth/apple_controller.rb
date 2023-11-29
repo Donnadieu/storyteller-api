@@ -36,7 +36,7 @@ module Api
         raise Errors::Unauthorized unless @id_token_back_channel&.aud == provider_credentials.client_id
 
         @id_token = @id_token_back_channel
-        result = OnBoardSingleSignOnUser.call(@id_token)
+        result = OnBoardSingleSignOnUser.call(id_token)
         raise Errors::Unauthorized unless result.success?
 
         @user = result.user
