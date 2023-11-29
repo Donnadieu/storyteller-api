@@ -19,20 +19,6 @@ class User < ApplicationRecord
   validates :provider, presence: true
   validates :email, presence: true
 
-  def self.find_or_create_from_auth_hash(auth_hash)
-    provider = auth_hash['iss']
-    name = auth_hash['name']
-    image = auth_hash['picture']
-    email = auth_hash['email']
-
-    User.find_or_create_by(provider:, email:) do |user|
-      user.name = name
-      user.image = image
-      user.email = email
-      user.provider = provider
-    end
-  end
-
   def admin?
     Rails.application.config.admin_emails.include? email
   end
