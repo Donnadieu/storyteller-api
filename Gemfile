@@ -34,6 +34,9 @@ gem 'bootsnap', require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem 'after_commit_everywhere', '~> 1.3' # Executes code after database commit wherever you want in your application
+gem 'aasm', '~> 5.5' # State machine mixin for Ruby objects
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'doorkeeper', '~> 5.6'
 gem 'doorkeeper-jwt'
@@ -71,6 +74,7 @@ group :development do
 end
 
 gem 'apple_id', '~> 1.6'
+gem 'interactor', '~> 3.1' # Simple interactor implementation
 
 gem 'flipper', '~> 0.28.3'
 gem 'flipper-active_record', '~> 0.28.3'
