@@ -7,6 +7,7 @@ class OnBoardSingleSignOnUser
     context.user.finished_onboarding! unless context.user.active?
   end
 
+  # TODO: Test that this works for /api/oauth/apple
   def call
     provider, name, image, email = context.to_h.values_at :iss, :name, :image, :email
     context.user = User.find_or_create_by(provider:, email:) do |user|
