@@ -19,7 +19,7 @@ module UserState
         state :inactive
         state :pending_request_to_delete
 
-        event :onboard do
+        event :finished_onboarding do
           transitions from: %i[new pending_onboarding], to: :active
 
           after do
@@ -27,7 +27,7 @@ module UserState
           end
         end
 
-        event :invite_to_soft_launch do
+        event :invited_to_soft_launch do
           transitions from: %i[onboarded pending_soft_launch_invitation], to: :active
         end
       end

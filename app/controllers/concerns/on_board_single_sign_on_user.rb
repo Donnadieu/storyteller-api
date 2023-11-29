@@ -4,7 +4,7 @@ class OnBoardSingleSignOnUser
   include Interactor
 
   after do
-    context.user.onboard! unless context.user.active?
+    context.user.finished_onboarding! unless context.user.active?
   end
 
   def call
