@@ -34,8 +34,8 @@ gem 'bootsnap', require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-gem 'after_commit_everywhere', '~> 1.3' # Executes code after database commit wherever you want in your application
 gem 'aasm', '~> 5.5' # State machine mixin for Ruby objects
+gem 'after_commit_everywhere', '~> 1.3' # Executes code after database commit wherever you want in your application
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'doorkeeper', '~> 5.6'

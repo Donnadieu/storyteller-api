@@ -20,4 +20,3 @@ class OnBoardSingleSignOnUser
       unless context.user.errors.none? && context.user.persisted?
   end
 end
-

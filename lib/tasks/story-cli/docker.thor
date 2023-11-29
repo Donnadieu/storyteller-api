@@ -29,9 +29,9 @@ module StoryCLI
       cmd = 'docker compose up -d && docker compose logs --follow --tail --since=15m'
       puts "Will execute#{dry_run? ? ' (Dry-run)' : ''}: #{cmd}" if verbose? || dry_run?
 
-      unless dry_run?
-        system(cmd, out: $stdout)
-      end
+      return if dry_run?
+
+      system(cmd, out: $stdout)
     end
 
     desc 'clean', 'Clean up docker files, volumes, images and containers'
@@ -43,11 +43,11 @@ module StoryCLI
       cmd = 'docker compose down'
       puts "Will execute#{dry_run? ? ' (Dry-run)' : ''}: #{cmd}" if verbose? || dry_run?
 
-      unless dry_run?
-        system(cmd, out: $stdout)
-        FileUtils.rm_rf(database_path, verbose: verbose?)
-        FileUtils.rm_rf(redis_path, verbose: verbose?)
-      end
+      return if dry_run?
+
+      system(cmd, out: $stdout)
+      FileUtils.rm_rf(database_path, verbose: verbose?)
+      FileUtils.rm_rf(redis_path, verbose: verbose?)
     end
 
     private

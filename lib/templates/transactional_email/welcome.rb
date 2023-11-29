@@ -14,11 +14,10 @@ module TransactionalEmail
         )
       end
 
-      if @recipients.none?
-        raise ArgumentError, 'Email address is required if user is unknown' if email.nil?
+      return unless @recipients.none?
+      raise ArgumentError, 'Email address is required if user is unknown' if email.nil?
 
-        @recipients << SibApiV3Sdk::SendSmtpEmailTo.new(name:, email:)
-      end
+      @recipients << SibApiV3Sdk::SendSmtpEmailTo.new(name:, email:)
     end
 
     def send!
