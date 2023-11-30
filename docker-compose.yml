@@ -8,7 +8,9 @@ services:
     ports:
       - '6379:6379'
     volumes:
-      - ${DATABASE_ROOT_DIR:-'.'}/redis:/data
+      # TODO: Configurations included to address this (seems to not be taking yet): https://github.com/jemalloc/jemalloc/issues/1328
+      - ${DATABASE_ROOT_DIR:-'.'}/redis/sysctl.conf:/etc/sysctl.conf
+      - ${DATABASE_ROOT_DIR:-'.'}/redis/data:/data
 
   db: # https://hub.docker.com/_/postgres
     image: postgres:15.5
