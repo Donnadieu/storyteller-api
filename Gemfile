@@ -44,6 +44,8 @@ gem 'googleauth' # Google Auth Library for Ruby
 gem 'rack-cors'
 gem 'ruby-openai'
 
+gem 'valid_email2', '~> 5.1' # ActiveModel validation for email. Including MX lookup and disposable email blacklist
+
 gem 'sidekiq', '~> 7.2.0' # Simple, efficient background processing for Ruby
 gem 'sidekiq-cron' # Scheduler/Cron for Sidekiq jobs
 

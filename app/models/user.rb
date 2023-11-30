@@ -17,7 +17,10 @@ class User < ApplicationRecord
   has_many :stories, through: :user_stories, dependent: :nullify
 
   validates :provider, presence: true
-  validates :email, presence: true
+  validates :email,
+            presence: true,
+            # Docs on email validation: https://github.com/micke/valid_email2#use-with-activemodel
+            'valid_email_2/email': true
 
   def admin?
     Rails.application.config.admin_emails.include? email
