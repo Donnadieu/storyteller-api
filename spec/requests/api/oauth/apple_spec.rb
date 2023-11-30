@@ -3,18 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe '/api/oauth/apple', type: :request do
-  before do
-    Rails.application.load_seed
-  end
-
-  around do |example|
-    Sidekiq::Testing.inline!
-    example.run
-    Sidekiq::Testing.fake!
-  end
-
   describe 'POST /create' do
     let(:valid_app) do
+      # NOTE: This is the client app initialized by loading the seed data
       Doorkeeper::Application.find_by(name: 'StorySprout')
     end
     let(:valid_attributes) do

@@ -5,10 +5,10 @@ module TransactionalEmail
   class Welcome
     # TODO: Include support for GlobalID
     def initialize(email: nil, name: nil, user_id: nil)
-      @user = User.find(user_id) unless user_id.nil?
+      @user = User.find_by_id(user_id) unless user_id.nil?
       @recipients ||= []
 
-      if defined?(@user)
+      if @user.present?
         @recipients << SibApiV3Sdk::SendSmtpEmailTo.new(
           name: @user.name, email: @user.email
         )
