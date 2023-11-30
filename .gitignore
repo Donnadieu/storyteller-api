@@ -41,6 +41,8 @@
 
 # Ignore some IDE files
 /.idea
+/.ide-configs
+/spec/vcr_cassettes/integrations/*
 
 ################################ macOS ###################################
 # General

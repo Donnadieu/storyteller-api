@@ -24,8 +24,33 @@ module StoryCLI
       true
     end
 
+    desc 'setup', 'Setup the docker (development) environment'
+    def setup
+      %w[DATABASE_USER DATABASE_PASSWORD].each do |key|
+        abort "Please set the #{key} environment variable" unless ENV.key?(key)
+      end
+
+      # Create the secrets directory if it doesn't exist
+      FileUtils.mkdir_p(secrets_path, verbose: verbose?)
+
+      # Save the database user to a local file for use by the docker-compose.yml config file
+      if File.exist? database_user_path
+        puts "Database user already exists at #{database_user_path}"
+      else
+        File.open(database_user_path, 'w') { |f| f.puts(ENV.fetch('DATABASE_USER')) }
+      end
+
+      # Save the database password to a local file for use by the docker-compose.yml config file
+      if File.exist? database_password_path
+        puts "Database password already exists at #{database_password_path}"
+      else
+        File.open(database_password_path, 'w') { |f| f.puts(ENV.fetch('DATABASE_PASSWORD')) }
+      end
+    end
+
     desc 'start', 'Start the docker containers'
     def start
+      setup unless dry_run? || File.exist?(database_user_path)
       cmd = 'docker compose up -d && docker compose logs --follow --tail --since=15m'
       puts "Will execute#{dry_run? ? ' (Dry-run)' : ''}: #{cmd}" if verbose? || dry_run?
 
@@ -50,6 +75,18 @@ module StoryCLI
     end
 
     private
+
+    def secrets_path
+      Rails.root.join('config', 'secrets').to_s
+    end
+
+    def database_user_path
+      "#{secrets_path}/database-user.txt"
+    end
+
+    def database_password_path
+      "#{secrets_path}/database-password.txt"
+    end
 
     def database_path
       Rails.root.join('db', ENV.fetch('RAILS_ENV', 'development'), 'postgresql', 'data').to_s
