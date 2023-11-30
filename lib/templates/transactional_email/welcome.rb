@@ -32,8 +32,13 @@ module TransactionalEmail
       # Docs https://github.com/sendinblue/APIv3-ruby-library/blob/master/docs/TransactionalEmailsApi.md#send_transac_email
       # Returns a boolean if the email is sent successfully
       api_instance.send_transac_email(email)
+      Rails.logger.info "Sent welcome email to #{@recipients}"
     rescue SibApiV3Sdk::ApiError => e
-      Rails.logger.error "Exception when calling TransactionalEmailsApi->send_transac_email: #{e}"
+      Rails.logger.error "#{log_prefix(__method__)} => #{e}"
+    end
+
+    def log_prefix(method_name)
+      "#{self.class.name}##{method_name}"
     end
 
     def self.template_id
