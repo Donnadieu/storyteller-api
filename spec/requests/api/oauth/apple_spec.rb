@@ -33,7 +33,6 @@ RSpec.describe '/api/oauth/apple', type: :request do
       allow(mock_access_token).to receive(:id_token) { mock_id_token }
       allow(mock_access_token).to receive(:access_token) { 'mock_access_token' }
       allow(mock_id_token).to receive(:aud) { 'app.storysprout.web.auth' }
-      # allow(mock_id_token).to receive(:as_json) { mock_user_id_data }
       allow(mock_id_token).to receive(:verify!) { true }
       allow_any_instance_of(AppleID::Client).to receive(:access_token!) { mock_access_token }
       allow(mock_welcome_email).to receive(:send!)
@@ -55,14 +54,7 @@ RSpec.describe '/api/oauth/apple', type: :request do
         end
 
         before do
-          # allow(mock_access_token).to receive(:id_token) { mock_id_token }
-          # allow(mock_access_token).to receive(:access_token) { 'mock_access_token' }
-          # allow(mock_id_token).to receive(:aud) { 'app.storysprout.web.auth' }
           allow(mock_id_token).to receive(:as_json) { mock_user_id_data }
-          # allow(mock_id_token).to receive(:verify!) { true }
-          # allow_any_instance_of(AppleID::Client).to receive(:access_token!) { mock_access_token }
-          # allow(mock_welcome_email).to receive(:send!)
-          # allow(TransactionalEmail::Welcome).to receive(:new) { mock_welcome_email }
         end
 
         it 'sends a welcome email and on-boards a new user' do
