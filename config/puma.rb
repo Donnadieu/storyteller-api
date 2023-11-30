@@ -46,5 +46,5 @@ plugin :tmp_restart
 
 on_worker_boot do
   # Re-open appenders after forking the process
-  SemanticLogger.reopen
+  SemanticLogger.reopen if defined?(SemanticLogger)
 end
