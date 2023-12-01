@@ -11,7 +11,6 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   port: <%= ENV.fetch('DATABASE_PORT', 5432) %>
   username: <%= ENV.fetch('DATABASE_USER', Rails.application.credentials.database.user) %>
-#  password: <%#= ENV.fetch('DATABASE_PASSWORD', Rails.application.credentials.database.password) %>
 
 development:
   <<: *default
@@ -23,6 +22,7 @@ development:
 test:
   <<: *default
   database: storysprout_test
+  password: <%= ENV.fetch('DATABASE_PASSWORD', Rails.application.credentials.database.password) %>
 
 production:
   <<: *default
