@@ -3,3 +3,17 @@ export NGROK_AUTH_TOKEN=
 # export NGROK_PROFILE_CONFIG_PATH=$(realpath ~/.ngrok2/ngrok.yml)
 # This should be the root path for the storyteller-api project i.e. Rails.root
 export PROJECT_ROOT=
+
+# Database
+export DATABASE_ROOT_DIR="${PROJECT_ROOT}/db/${RAILS_ENV:-development}"
+export DATABASE_NAME=
+export DATABASE_USER=
+export DATABASE_PASSWORD=
+
+# Logging
+export STACKDRIVER_ENABLED=false
+export STACKDRIVER_PROJECT_ID=
+export GOOGLE_APPLICATION_CREDENTIALS=
+
+# Redis
+export REDIS_URL=
