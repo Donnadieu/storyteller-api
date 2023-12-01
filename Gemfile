@@ -75,4 +75,5 @@ gem 'flipper-api', '~> 0.28.3'
 gem 'flipper-ui', '~> 0.28.3'
 
 gem 'amazing_print'
+
 gem 'rails_semantic_logger'
