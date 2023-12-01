@@ -43,11 +43,11 @@ module StoryCLI
       cmd = 'docker compose down'
       puts "Will execute#{dry_run? ? ' (Dry-run)' : ''}: #{cmd}" if verbose? || dry_run?
 
-      unless dry_run?
-        system(cmd, out: $stdout)
-        FileUtils.rm_rf(database_path, verbose: verbose?)
-        FileUtils.rm_rf(redis_path, verbose: verbose?)
-      end
+      return if dry_run?
+
+      system(cmd, out: $stdout)
+      FileUtils.rm_rf(database_path, verbose: verbose?)
+      FileUtils.rm_rf(redis_path, verbose: verbose?)
     end
 
     private
@@ -57,7 +57,7 @@ module StoryCLI
     end
 
     def redis_path
-      Rails.root.join('db', ENV.fetch('RAILS_ENV', 'development'), 'redis').to_s
+      Rails.root.join('db', ENV.fetch('RAILS_ENV', 'development'), 'redis', 'data').to_s
     end
 
     def dry_run?
