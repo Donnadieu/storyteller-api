@@ -57,7 +57,7 @@ module StoryCLI
     end
 
     def redis_path
-      Rails.root.join('db', ENV.fetch('RAILS_ENV', 'development'), 'redis').to_s
+      Rails.root.join('db', ENV.fetch('RAILS_ENV', 'development'), 'redis', 'data').to_s
     end
 
     def dry_run?
