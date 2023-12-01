@@ -18,4 +18,3 @@ brew 'glibc' if OS.linux?
 # cask "google-chrome"
 cask 'ngrok'
 cask 'pgadmin4'
-cask 'another-redis-desktop-manager'

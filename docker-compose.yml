@@ -8,7 +8,7 @@ services:
     ports:
       - '6379:6379'
     volumes:
-      - ${DATABASE_ROOT_DIR:-'.'}/redis/data:/data
+      - ${DATABASE_ROOT_DIR:-'.'}/redis:/data
 
 networks:
   default:
