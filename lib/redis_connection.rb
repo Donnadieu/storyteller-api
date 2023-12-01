@@ -22,8 +22,6 @@ class RedisConnection
     private
 
     def redis_url
-      return @redis_url if defined?(@redis_url)
-
       @redis_url ||= ENV.fetch('REDIS_TLS_URL', Rails.application.credentials.redis.url)
     end
   end
