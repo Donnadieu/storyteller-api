@@ -1,3 +1,4 @@
+export RAILS_MAX_THREADS=
 export NGROK_AUTH_TOKEN=
 ## To get this path, run: ngrok config check
 # export NGROK_PROFILE_CONFIG_PATH=$(realpath ~/.ngrok2/ngrok.yml)
