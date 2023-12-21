@@ -103,6 +103,9 @@ Rails.application.configure do |app|
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
 
+  # Fail loudly when missing translations occur.
+  config.action_view.raise_on_missing_translations = true
+
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 end
