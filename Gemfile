@@ -41,6 +41,9 @@ gem 'googleauth' # Google Auth Library for Ruby
 gem 'rack-cors'
 gem 'ruby-openai'
 
+gem 'sidekiq', '~> 7.2.0' # Simple, efficient background processing for Ruby
+gem 'sidekiq-cron' # Scheduler/Cron for Sidekiq jobs
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'climate_control'
@@ -79,6 +82,8 @@ gem 'flipper-active_record', '~> 0.28.3'
 gem 'flipper-api', '~> 0.28.3'
 gem 'flipper-ui', '~> 0.28.3'
 
-gem 'amazing_print'
+# Brevo (FKA SendinBlue) API V3 Ruby Gem. Docs: https://github.com/sendinblue/APIv3-ruby-library
+gem 'sib-api-v3-sdk'
 
+gem 'amazing_print'
 gem 'rails_semantic_logger'

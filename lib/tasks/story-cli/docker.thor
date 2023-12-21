@@ -88,6 +88,7 @@ module StoryCLI
 
       system(cmd, out: $stdout)
       FileUtils.rm_rf(database_path, verbose: verbose?)
+      FileUtils.rm_rf(redis_path, verbose: verbose?)
     end
 
     private
@@ -117,6 +118,10 @@ module StoryCLI
 
     def database_path
       Rails.root.join('db', ENV.fetch('RAILS_ENV', 'development'), 'postgresql', 'data').to_s
+    end
+
+    def redis_path
+      Rails.root.join('db', ENV.fetch('RAILS_ENV', 'development'), 'redis', 'data').to_s
     end
 
     def dry_run?
