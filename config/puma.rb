@@ -46,12 +46,6 @@ plugin :tmp_restart
 
 on_worker_boot do
   ActiveSupport.on_load(:active_record) do
-    # ActiveRecord::Base.establish_connection(
-    #   adapter: 'postgresql',
-    #   host: ENV.fetch('DATABASE_HOST'),
-    #   username: ENV.fetch('DATABASE_USER'),
-    #   database: ENV.fetch('DATABASE_NAME')
-    # )
     ActiveRecord::Base.establish_connection
   end
 
