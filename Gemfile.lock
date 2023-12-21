@@ -447,7 +447,7 @@ DEPENDENCIES
   flipper-ui (~> 0.28.3)
   googleauth
   logtail-rails
-  pg
+  pg (~> 1.1)
   pry-rails
   puma (~> 5.0)
   rack-cors
