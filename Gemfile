@@ -58,6 +58,13 @@ end
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  # TODO: Keeping this gem out of production for now while we're still
+  #   exploring the spike to use GCP cloud logging (vs. a cloud logging service)
+  gem 'stackdriver', '~> 0.21'
+
+  # Better Stack Rails integration
+  gem 'logtail-rails'
 end
 
 gem 'apple_id', '~> 1.6'
@@ -66,3 +73,7 @@ gem 'flipper', '~> 0.28.3'
 gem 'flipper-active_record', '~> 0.28.3'
 gem 'flipper-api', '~> 0.28.3'
 gem 'flipper-ui', '~> 0.28.3'
+
+gem 'amazing_print'
+
+gem 'rails_semantic_logger'

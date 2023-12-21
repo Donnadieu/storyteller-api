@@ -7,6 +7,7 @@
 # The application 'bundle' is installed as part of a gem, and
 # this file is here to facilitate running it.
 #
+# rubocop:disable Layout/LineLength
 
 require 'rubygems'
 
@@ -106,6 +107,7 @@ m = Module.new do
   rescue StandardError, LoadError => e
     e
   end
+  # rubocop:enable Layout/LineLength
 end
 
 m.load_bundler!

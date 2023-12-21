@@ -2,7 +2,8 @@
 
 require 'thor'
 
-module StorySproutCLI
+module StoryCLI
+  # Manage NGROK tunnels for dev testing of the app and rails API
   class Tunnel < Thor
     class_option :verbose,
                  type: :boolean,
@@ -17,7 +18,7 @@ module StorySproutCLI
                  default: false,
                  required: false
 
-    namespace :'story-sprout-cli:tunnel'
+    namespace :'story-cli:tunnel'
 
     def self.exit_on_failure?
       true
@@ -39,8 +40,8 @@ module StorySproutCLI
       config_files = []
       app_config_file = File.join(project_root, 'config', 'ngrok.yml')
       profile_config_file = ENV.fetch('NGROK_PROFILE_CONFIG_PATH', nil)
-      config_files << profile_config_file if File.exist?(profile_config_file)
-      config_files << app_config_file if File.exist?(app_config_file)
+      config_files << profile_config_file if profile_config_file.present? && File.exist?(profile_config_file)
+      config_files << app_config_file if app_config_file.present? && File.exist?(app_config_file)
 
       if verbose?
         puts <<~BANNER
