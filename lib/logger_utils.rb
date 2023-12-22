@@ -10,7 +10,14 @@ module LoggerUtils
         return if config.private_key.nil?
         return if config.private_key.credential.nil?
 
-        # Write out GCP credentials in server instance
+        # TODO: This writes out GCP credentials in server instance, but we should ideally
+        #   use a service account instead provisioned with a secure key store like the
+        #   built in credentials encrypted file for Rails. This is a temporary solution.
+        #   We should look into other modes of authentication via the service account for
+        #   the GCP project. Alternatively, we can explore options for mounting these
+        #   credentials in the app instance container(s) as supported by our app platform.
+        # Docs on GCP application default credentials (ADC): https://cloud.google.com/docs/authentication/application-default-credentials
+        # Docs on mounting credentials: https://cloud.google.com/docs/authentication/application-default-credentials#personal
         unless File.exist?(private_key_file)
           File.open(private_key_file, 'w') do |file|
             file.write(config.private_key.credential)
