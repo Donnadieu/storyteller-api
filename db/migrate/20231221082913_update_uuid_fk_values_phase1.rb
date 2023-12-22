@@ -2,8 +2,6 @@
 
 # 20231221082913
 class UpdateUuidFkValuesPhase1 < ActiveRecord::Migration[7.0]
-  disable_ddl_transaction!
-
   def up
     safety_assured do
       execute <<~SQL
