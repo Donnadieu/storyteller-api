@@ -26,13 +26,13 @@ describe TransactionalEmail::WelcomeEmailJob, type: :job do
     end
   end
 
-  xcontext 'with a valid user' do
+  context 'with a valid user' do
     it 'sends the welcome email' do
       described_class.perform_now(user.id)
     end
   end
 
-  xcontext 'with an invalid user' do
+  context 'with an invalid user' do
     it 'raises an error' do
       expect do
         described_class.perform_now(99)

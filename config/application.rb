@@ -58,7 +58,7 @@ module StorytellerApi
     config.hosts += config_for(:allowed_hosts)
 
     # Docs on ActiveJob queue adapters: https://guides.rubyonrails.org/active_job_basics.html#backends
-    # config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_adapter = :sidekiq
 
     config.generators do |g|
       g.test_framework :rspec
