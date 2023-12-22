@@ -20,6 +20,8 @@ module StorytellerApi
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
+    config.time_zone = 'Eastern Time (US & Canada)'
+
     config.extra_load_paths = %w[
       lib/tasks
       lib/templates
@@ -55,10 +57,12 @@ module StorytellerApi
     # Configure allowed hosts. See doc https://guides.rubyonrails.org/configuring.html#actiondispatch-hostauthorization
     config.hosts += config_for(:allowed_hosts)
 
-    config.active_job.queue_adapter = :sidekiq
+    # Docs on ActiveJob queue adapters: https://guides.rubyonrails.org/active_job_basics.html#backends
+    # config.active_job.queue_adapter = :sidekiq
 
     config.generators do |g|
       g.test_framework :rspec
+      g.orm :active_record, primary_key_type: :uuid
     end
   end
 end

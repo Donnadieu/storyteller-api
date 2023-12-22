@@ -1,5 +1,14 @@
+export RAILS_MAX_THREADS=1
+export WEB_CONCURRENCY=0
 export NGROK_AUTH_TOKEN=
 ## To get this path, run: ngrok config check
 # export NGROK_PROFILE_CONFIG_PATH=$(realpath ~/.ngrok2/ngrok.yml)
 # This should be the root path for the storyteller-api project i.e. Rails.root
 export PROJECT_ROOT=
+export DATABASE_ROOT_DIR=
+export DATABASE_NAME=
+export DATABASE_USER=
+export DATABASE_PASSWORD=
+export REDIS_URL=
+export BREVO_API_KEY=
+export ADMIN_REMOTE_IP_ADDRESSES=

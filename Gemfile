@@ -8,7 +8,7 @@ ruby '3.2.2'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.6'
 
-gem 'pg'
+gem 'pg', '~> 1.1' # Use postgresql as the database for Active Record
 gem 'sqlite3' # Use sqlite3 as the database for Active Record
 
 gem 'puma', '~> 5.0' # Use the Puma web server [https://github.com/puma/puma]
@@ -46,9 +46,6 @@ gem 'ruby-openai'
 
 gem 'valid_email2', '~> 5.1' # ActiveModel validation for email. Including MX lookup and disposable email blacklist
 
-gem 'sidekiq', '~> 7.2.0' # Simple, efficient background processing for Ruby
-gem 'sidekiq-cron' # Scheduler/Cron for Sidekiq jobs
-
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'climate_control'
@@ -61,6 +58,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'shoulda-matchers'
+  gem 'strong_migrations'
 end
 
 group :development do
@@ -77,15 +75,16 @@ end
 
 group :test do
   gem 'vcr', '~> 6.2' # Record your test suite's HTTP interactions and replay them during future test runs for fast, deterministic, accurate tests
+  gem 'database_cleaner-active_record'
 end
 
 gem 'apple_id', '~> 1.6'
 gem 'interactor', '~> 3.1' # Simple interactor implementation
 
-gem 'flipper', '~> 0.28.3'
-gem 'flipper-active_record', '~> 0.28.3'
-gem 'flipper-api', '~> 0.28.3'
-gem 'flipper-ui', '~> 0.28.3'
+gem 'flipper', '~> 0.28'
+gem 'flipper-active_record', '~> 0.28'
+gem 'flipper-api', '~> 0.28'
+gem 'flipper-ui', '~> 0.28'
 
 # Brevo (FKA SendinBlue) API V3 Ruby Gem. Docs: https://github.com/sendinblue/APIv3-ruby-library
 gem 'sib-api-v3-sdk'

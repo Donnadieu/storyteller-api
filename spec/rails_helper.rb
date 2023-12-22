@@ -8,7 +8,8 @@ require_relative '../config/environment'
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
-require 'sidekiq/testing'
+require 'database_cleaner/active_record'
+# require 'sidekiq/testing'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -65,12 +66,24 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  # Database Cleaner config
+  # @NOTE Review this doc if using capybara/rspec https://github.com/DatabaseCleaner/database_cleaner#rspec-with-capybara-example
   config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+
+    # Load database seeds
     Rails.application.load_seed
   end
 
-  config.before(:each) do
-    Sidekiq::Testing.fake!
+  # config.before(:each) do
+  #   Sidekiq::Testing.fake!
+  # end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
   end
 end
 

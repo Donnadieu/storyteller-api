@@ -30,10 +30,30 @@ class CreateDoorkeeperTables < ActiveRecord::Migration[7.0]
     end
 
     add_index :oauth_access_grants, :token, unique: true
+
+    # === Dangerous operation detected #strong_migrations ===
+    #
+    # Adding a foreign key blocks writes on both tables. Instead,
+    # add the foreign key without validating existing rows,
+    # then validate them in a separate migration.
+    #
+    # class CreateDoorkeeperTables < ActiveRecord::Migration[7.0]
+    #   def change
+    #     add_foreign_key :oauth_access_grants, :oauth_applications, column: :application_id, validate: false
+    #   end
+    # end
+    #
+    # class ValidateCreateDoorkeeperTables < ActiveRecord::Migration[7.0]
+    #   def change
+    #     validate_foreign_key :oauth_access_grants, :oauth_applications
+    #   end
+    # end
+    #
     add_foreign_key(
       :oauth_access_grants,
       :oauth_applications,
-      column: :application_id
+      column: :application_id,
+      validate: false
     )
 
     create_table :oauth_access_tokens do |t|
@@ -88,11 +108,12 @@ class CreateDoorkeeperTables < ActiveRecord::Migration[7.0]
     add_foreign_key(
       :oauth_access_tokens,
       :oauth_applications,
-      column: :application_id
+      column: :application_id,
+      validate: false
     )
 
     # Uncomment below to ensure a valid reference to the resource owner's table
-    add_foreign_key :oauth_access_grants, :users, column: :resource_owner_id
-    add_foreign_key :oauth_access_tokens, :users, column: :resource_owner_id
+    add_foreign_key :oauth_access_grants, :users, column: :resource_owner_id, validate: false
+    add_foreign_key :oauth_access_tokens, :users, column: :resource_owner_id, validate: false
   end
 end
