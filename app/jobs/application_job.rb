@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ApplicationJob < ActiveJob::Base
-  sidekiq_options queue: :default, retry: 3
-
   # Automatically retry jobs that encountered a deadlock
   # retry_on ActiveRecord::Deadlocked
 
