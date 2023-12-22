@@ -15,6 +15,23 @@ jobs:
       #   We need to test that doing this within a PR will stream that PR's
       #   log output in the test environment to the cloud logger
       STACKDRIVER_ENABLED: false
+      DATABASE_USER: storysprout_user
+      DATABASE_PASSWORD: Test1234
+
+    services:
+      postgres:
+        image: postgres:15.4
+        env:
+          POSTGRES_DB: storysprout_test
+          POSTGRES_USER: ${{env.DATABASE_USER}}
+          POSTGRES_PASSWORD: ${{env.DATABASE_PASSWORD}}
+          # POSTGRES_HOST_AUTH_METHOD: trust # IMPORTANT allows all connections without a password - experimental only!
+        ports: ['5432:5432']
+        options: >- # Options for the service, in this case we want to make sure that the Postgres container passes a health check
+          --health-cmd pg_isready
+          --health-interval 15s
+          --health-timeout 5s
+          --health-retries 3      
 
     steps:
     - uses: actions/checkout@v2
@@ -28,6 +45,9 @@ jobs:
       run: |
         gem install bundler
         bundle install --jobs 4 --retry 3        
+
+    - name: Setup DB
+      run: bin/rake db:drop db:create db:migrate && bin/rake db:seed
 
     - name: Build and run tests
       run: |

@@ -10,7 +10,7 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-*
-/db/development/redis/*
+/db/development/redis/data/*
 /db/development/postgresql/data/*
 
 # Ignore all logfiles and tempfiles.
@@ -42,6 +42,7 @@
 # Ignore some IDE files
 /.idea
 /.ide-configs
+/spec/vcr_cassettes/integrations/*
 
 ################################ macOS ###################################
 # General

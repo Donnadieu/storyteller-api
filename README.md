@@ -49,7 +49,6 @@ and your command line, run the following code in your console:
 EDITOR=nano bin/rails credentials:edit --environment ${RAILS_ENV:-development}
 ```
 
-
 ### Using NGROK
 
 Follow these steps to setup `ngrok` for your local environment:
@@ -66,6 +65,12 @@ thor story-cli:tunnel:open_all
 ```
 
 ## Operations
+
+### Connecting to your local psql console 
+
+```shell
+docker compose exec db psql -h db.storysprout.local -U storysprout_user
+```
 
 ### Using logs
 

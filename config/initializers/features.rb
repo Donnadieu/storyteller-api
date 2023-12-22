@@ -3,10 +3,7 @@
 require File.expand_path('../../lib/feature_flag_utils', __dir__)
 
 Flipper.configure do |config|
-  config.default do
-    adapter = Flipper::Adapters::ActiveRecord.new
-    Flipper.new(adapter)
-  end
+  config.adapter { Flipper::Adapters::ActiveRecord.new }
 
   if FeatureFlagUtils.initialized?
     FeatureFlagUtils.setup_defaults
