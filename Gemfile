@@ -74,8 +74,8 @@ group :development do
 end
 
 group :test do
-  gem 'vcr', '~> 6.2' # Record your test suite's HTTP interactions and replay them during future test runs for fast, deterministic, accurate tests
   gem 'database_cleaner-active_record'
+  gem 'vcr', '~> 6.2' # Record your test suite's HTTP interactions and replay them during future test runs for fast, deterministic, accurate tests
 end
 
 gem 'apple_id', '~> 1.6'

@@ -16,11 +16,11 @@ class OnBoardSingleSignOnUser
       user.provider = provider
     end
 
-    if context.user.errors.any?
-      context.errors = context.user.errors.full_messages
-      context.fail!(
-        message: "There was a problem onboarding the user via #{provider.to_s.humanize} with email #{email}"
-      )
-    end
+    return unless context.user.errors.any?
+
+    context.errors = context.user.errors.full_messages
+    context.fail!(
+      message: "There was a problem onboarding the user via #{provider.to_s.humanize} with email #{email}"
+    )
   end
 end
