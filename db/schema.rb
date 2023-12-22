@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_231_109_105_836) do
+ActiveRecord::Schema[7.0].define(version: 20_231_129_080_350) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -103,6 +103,7 @@ ActiveRecord::Schema[7.0].define(version: 20_231_109_105_836) do
     t.string 'provider'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.string 'customer_journey_state'
     t.index ['email'], name: 'index_users_on_email', unique: true
   end
 
