@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_231_109_105_836) do
+ActiveRecord::Schema[7.0].define(version: 20_231_221_082_913) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -80,6 +80,8 @@ ActiveRecord::Schema[7.0].define(version: 20_231_109_105_836) do
     t.string 'description'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.uuid 'uuid', default: -> { 'gen_random_uuid()' }, null: false
+    t.index ['uuid'], name: 'index_stories_on_uuid', unique: true
   end
 
   create_table 'user_stories', force: :cascade do |t|
@@ -92,8 +94,12 @@ ActiveRecord::Schema[7.0].define(version: 20_231_109_105_836) do
     t.string 'notes'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.uuid 'uuid', default: -> { 'gen_random_uuid()' }, null: false
+    t.uuid 'user_uuid'
+    t.uuid 'story_uuid'
     t.index ['story_id'], name: 'index_user_stories_on_story_id'
     t.index ['user_id'], name: 'index_user_stories_on_user_id'
+    t.index ['uuid'], name: 'index_user_stories_on_uuid', unique: true
   end
 
   create_table 'users', force: :cascade do |t|
@@ -103,7 +109,9 @@ ActiveRecord::Schema[7.0].define(version: 20_231_109_105_836) do
     t.string 'provider'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.uuid 'uuid', default: -> { 'gen_random_uuid()' }, null: false
     t.index ['email'], name: 'index_users_on_email', unique: true
+    t.index ['uuid'], name: 'index_users_on_uuid', unique: true
   end
 
   add_foreign_key 'oauth_access_grants', 'oauth_applications', column: 'application_id'
