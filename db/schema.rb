@@ -12,7 +12,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_230_730_183_329) do
+ActiveRecord::Schema[7.0].define(version: 20_231_109_105_836) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension 'pgcrypto'
+  enable_extension 'plpgsql'
+
   create_table 'flipper_features', force: :cascade do |t|
     t.string 'key', null: false
     t.datetime 'created_at', null: false
@@ -30,8 +34,8 @@ ActiveRecord::Schema[7.0].define(version: 20_230_730_183_329) do
   end
 
   create_table 'oauth_access_grants', force: :cascade do |t|
-    t.integer 'resource_owner_id', null: false
-    t.integer 'application_id', null: false
+    t.bigint 'resource_owner_id', null: false
+    t.bigint 'application_id', null: false
     t.string 'token', null: false
     t.integer 'expires_in', null: false
     t.text 'redirect_uri'
@@ -44,8 +48,8 @@ ActiveRecord::Schema[7.0].define(version: 20_230_730_183_329) do
   end
 
   create_table 'oauth_access_tokens', force: :cascade do |t|
-    t.integer 'resource_owner_id'
-    t.integer 'application_id', null: false
+    t.bigint 'resource_owner_id'
+    t.bigint 'application_id', null: false
     t.string 'token', null: false
     t.string 'refresh_token'
     t.integer 'expires_in'
@@ -79,8 +83,8 @@ ActiveRecord::Schema[7.0].define(version: 20_230_730_183_329) do
   end
 
   create_table 'user_stories', force: :cascade do |t|
-    t.integer 'user_id', null: false
-    t.integer 'story_id', null: false
+    t.bigint 'user_id', null: false
+    t.bigint 'story_id', null: false
     t.datetime 'purchased_at'
     t.datetime 'expires_at'
     t.datetime 'activated_at'

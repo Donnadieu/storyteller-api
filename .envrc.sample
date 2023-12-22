@@ -1,3 +1,5 @@
+export RAILS_MAX_THREADS=1
+export WEB_CONCURRENCY=0
 export NGROK_AUTH_TOKEN=
 ## To get this path, run: ngrok config check
 # export NGROK_PROFILE_CONFIG_PATH=$(realpath ~/.ngrok2/ngrok.yml)
@@ -17,3 +19,8 @@ export GOOGLE_APPLICATION_CREDENTIALS=
 
 # Redis
 export REDIS_URL=
+
+# Emails
+export BREVO_API_KEY=
+
+export ADMIN_REMOTE_IP_ADDRESSES=
