@@ -25,9 +25,18 @@ class ChangePkInDoorkeeperTables < ActiveRecord::Migration[7.0]
         safety_assured do
           rename_column table, :id, :numeric_id
           rename_column table, :uuid, :id
+
+          execute <<~SQL
+            DROP SEQUENCE IF EXISTS #{table}_id_seq CASCADE;
+          SQL
+
+          execute <<~SQL
+            CREATE SEQUENCE IF NOT EXISTS #{table}_numeric_id_seq OWNED BY #{table}.numeric_id;
+          SQL
+
           change_column_default table,
                                 :numeric_id,
-                                "nextval('#{table}_numeric_id_seq'::regclass)"
+                                proc { "nextval('#{table}_numeric_id_seq'::regclass)" }
         end
         change_pk(table)
       end
@@ -57,9 +66,18 @@ class ChangePkInDoorkeeperTables < ActiveRecord::Migration[7.0]
         safety_assured do
           rename_column table, :id, :uuid
           rename_column table, :numeric_id, :id
+
+          execute <<~SQL
+            DROP SEQUENCE IF EXISTS #{table}_numeric_id_seq CASCADE;
+          SQL
+
+          execute <<~SQL
+            CREATE SEQUENCE IF NOT EXISTS #{table}_id_seq OWNED BY #{table}.id;
+          SQL
+
           change_column_default table,
                                 :id,
-                                "nextval('#{table}_id_seq'::regclass)"
+                                proc { "nextval('#{table}_id_seq'::regclass)" }
         end
         change_pk(table)
       end

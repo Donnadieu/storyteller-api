@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 20_231_222_130_821) do
   end
 
   create_table 'oauth_access_grants', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
-    t.bigint 'numeric_id', null: false
+    t.bigserial 'numeric_id', null: false
     t.bigint 'resource_owner_id', null: false
     t.bigint 'numeric_application_id', null: false
     t.string 'token', null: false
@@ -51,7 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 20_231_222_130_821) do
   end
 
   create_table 'oauth_access_tokens', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
-    t.bigint 'numeric_id', null: false
+    t.bigserial 'numeric_id', null: false
     t.bigint 'resource_owner_id'
     t.bigint 'numeric_application_id', null: false
     t.string 'token', null: false
@@ -70,7 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 20_231_222_130_821) do
   end
 
   create_table 'oauth_applications', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
-    t.bigint 'numeric_id', null: false
+    t.bigserial 'numeric_id', null: false
     t.string 'name', null: false
     t.string 'uid', null: false
     t.string 'secret', null: false
