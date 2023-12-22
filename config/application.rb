@@ -19,7 +19,7 @@ module StorytellerApi
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
+    # Doc on ActiveSupport::TimeZone: https://api.rubyonrails.org/classes/ActiveSupport/TimeZone.html
     config.time_zone = 'Eastern Time (US & Canada)'
 
     config.extra_load_paths = [
@@ -55,6 +55,9 @@ module StorytellerApi
 
     # Configure allowed hosts. See doc https://guides.rubyonrails.org/configuring.html#actiondispatch-hostauthorization
     config.hosts += config_for(:allowed_hosts)
+
+    # Docs on ActiveJob queue adapters: https://guides.rubyonrails.org/active_job_basics.html#backends
+    config.active_job.queue_adapter = :sidekiq
 
     config.generators do |g|
       g.test_framework :rspec
