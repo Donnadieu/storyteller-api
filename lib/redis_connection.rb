@@ -22,10 +22,7 @@ class RedisConnection
     private
 
     def redis_url
-      return @redis_url if defined?(@redis_url)
-
-      @redis_url ||= ENV.fetch('REDIS_TLS_URL', ENV.fetch('REDIS_URL', nil))
-      @redis_url ||= 'redis://localhost:6379/0'
+      @redis_url ||= ENV.fetch('REDIS_TLS_URL', Rails.application.credentials.redis.url)
     end
   end
 end

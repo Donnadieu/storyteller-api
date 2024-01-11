@@ -45,8 +45,10 @@ preload_app!
 plugin :tmp_restart
 
 on_worker_boot do
-  # Re-open all connections
-  ActiveRecord::Base.establish_connection
+  ActiveSupport.on_load(:active_record) do
+    ActiveRecord::Base.establish_connection
+  end
+
   # Re-open appenders after forking the process
   SemanticLogger.reopen if defined?(SemanticLogger)
 end

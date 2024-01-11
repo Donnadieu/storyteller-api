@@ -19,7 +19,9 @@ module StorytellerApi
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
+    # Doc on ActiveSupport::TimeZone: https://api.rubyonrails.org/classes/ActiveSupport/TimeZone.html
+    config.time_zone = 'Eastern Time (US & Canada)'
+
     config.extra_load_paths = [
       'lib/tasks'
     ].map { |path| Rails.root.join(path).to_s }
@@ -30,6 +32,12 @@ module StorytellerApi
     # StackdriverUtils.setup if StackdriverUtils.enabled?
 
     config.log_tags = { request_id: :request_id, ip: :remote_ip }
+
+    # Configure session storage (required to use Sidekiq web UI): https://guides.rubyonrails.org/api_app.html#using-session-middlewares
+    config.session_store :cookie_store, key: '_storysprout_session'
+    # Required for all session management (regardless of session_store)
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use config.session_store, config.session_options
 
     # Flipper mount options
     config.flipper.mount_options = {}
@@ -48,8 +56,12 @@ module StorytellerApi
     # Configure allowed hosts. See doc https://guides.rubyonrails.org/configuring.html#actiondispatch-hostauthorization
     config.hosts += config_for(:allowed_hosts)
 
+    # Docs on ActiveJob queue adapters: https://guides.rubyonrails.org/active_job_basics.html#backends
+    config.active_job.queue_adapter = :sidekiq
+
     config.generators do |g|
       g.test_framework :rspec
+      g.orm :active_record, primary_key_type: :uuid
     end
   end
 end
