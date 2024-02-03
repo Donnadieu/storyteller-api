@@ -66,22 +66,12 @@ thor story-cli:tunnel:open_all
 
 ### How pre-commit hooks work 
 
-> Your pre-commit hooks for this project are managed by the `pre-commit` gem
+Your pre-commit hooks for this project are managed by the `pre-commit` gem.
 
-#### Setup 
-
-```shell
-# Run this to install the pre-commit gem
-gem install pre-commit
-
-# Run this in the project root
-pre-commit install
-```
-
-Running `pre-commit install` emits an output similar to the following:
+To setup the pre-commit hooks, run the following command in your console after `bundle install`:
 
 ```shell
-Installed /Users/localadmin/.asdf/installs/ruby/3.2.2/lib/ruby/gems/3.2.0/gems/pre-commit-0.40.0/templates/hooks/automatic to .git/hooks/pre-commit
+./scripts/install-hooks.bash
 ```
 
 ## Operations
