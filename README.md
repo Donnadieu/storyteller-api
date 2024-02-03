@@ -64,6 +64,26 @@ Then you can open a tunnel to your local environment by running:
 thor story-cli:tunnel:open_all
 ```
 
+### How pre-commit hooks work 
+
+> Your pre-commit hooks for this project are managed by the `pre-commit` gem
+
+#### Setup 
+
+```shell
+# Run this to install the pre-commit gem
+gem install pre-commit
+
+# Run this in the project root
+pre-commit install
+```
+
+Running `pre-commit install` emits an output similar to the following:
+
+```shell
+Installed /Users/localadmin/.asdf/installs/ruby/3.2.2/lib/ruby/gems/3.2.0/gems/pre-commit-0.40.0/templates/hooks/automatic to .git/hooks/pre-commit
+```
+
 ## Operations
 
 ### Connecting to your local psql console 

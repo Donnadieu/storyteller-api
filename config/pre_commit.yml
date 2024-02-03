@@ -1,0 +1,13 @@
+# Guide for setting up pre-commit hooks: https://dev.to/kanani_nirav/github-pre-commit-hook-setup-in-ruby-on-rails-12m3
+---
+:checks_remove: []
+:checks_add:
+  - :rubocop
+  - :debugger
+  - :pry
+  - :merge_conflict
+  - :console_log
+  - :whitespace
+:warnings_remove: []
+:warnings_add:
+  - :json
