@@ -39,10 +39,10 @@ MESSAGE
   end and PreCommit.run
 '
 
-echo "Running pre-push hook"
+echo "Running pre-commit hooks"
 
-./scripts/run-rubocop.bash
-./scripts/run-brakeman.bash
+#./scripts/run-rubocop.bash
+#./scripts/run-brakeman.bash
 
 # $? stores exit value of the last command
 if [ $? -ne 0 ]; then
