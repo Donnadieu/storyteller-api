@@ -17,6 +17,8 @@ AllCops:
   TargetRubyVersion: 3.2.2
   # For more information: https://docs.rubocop.org/rubocop/versioning.html
 #  NewCops: disable
+  Exclude:
+    - '.spec'
 
 Metrics:
   Enabled: false
