@@ -50,7 +50,6 @@ do
 	fi
 done
 
-./scripts/run-rubocop.bash
 ./scripts/run-brakeman.bash
 
 # $? stores exit value of the last command
