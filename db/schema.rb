@@ -110,6 +110,7 @@ ActiveRecord::Schema[7.0].define(version: 20_231_221_082_913) do
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.uuid 'uuid', default: -> { 'gen_random_uuid()' }, null: false
+    t.string 'customer_journey_state'
     t.index ['email'], name: 'index_users_on_email', unique: true
     t.index ['uuid'], name: 'index_users_on_uuid', unique: true
   end

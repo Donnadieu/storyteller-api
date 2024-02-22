@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'restricted_ips_constraint'
+require_relative 'restricted_ips_constraint'
 
 class AdminScopeConstraint
   def initialize
